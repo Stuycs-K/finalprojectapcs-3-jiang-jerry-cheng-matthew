@@ -2,7 +2,7 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
+Matthew Cheng && Jerry Jiang
 
 # IDEAS:
 
