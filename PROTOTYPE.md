@@ -30,4 +30,6 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 How you are breaking down the project and who is responsible for which parts.
 
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+Piece class, rotation of pieces, draw method to complete board, randomness of pieces: Friday the 23rd;  - Both of us;
+
+Game over, clearing the board lines, max height and soft/hard drop implementation with height, gravity; - Wednesday the 28th; Both of us;
