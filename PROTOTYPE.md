@@ -33,6 +33,16 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 How you are breaking down the project and who is responsible for which parts.
 
-Piece class, rotation of pieces, draw method to complete board, randomness of pieces: Friday the 23rd;  - Both of us;
+tile class : jerry by Sunday the 25th;
+for tile implementing coordinate storage and possibly using coordinates to rotate;
 
-Game over, clearing the board lines, max height and soft/hard drop implementation with height, gravity; - Wednesday the 28th; Both of us;
+piece class implementing tile class: Matthew by Monday the 26th after tile is done;
+for piece class implement randomness of pieces, as well as rotation of pieces by Tuesday the 27th;
+
+Score tracking, different points for different clears, higher score multi for higher thresholds reached;both by 28th;
+
+clearing the board lines, max height and soft/hard drop implementation with height; - Thursday the 29th; Both of us;
+
+game end, gravity , increasing gravity if score hits threshold: Friday the 30th; jerry;
+
+Draw board and make design ( make it look good ) : Sunday the 1st; Both of us;
