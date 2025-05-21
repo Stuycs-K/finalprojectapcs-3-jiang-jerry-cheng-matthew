@@ -1,7 +1,7 @@
 
 # Technical Details:
 
-(CHANGE THIS!!!!!)
+
 PERIOD 3
 
 Group member names: Jerry Jiang, Matthew Cheng
@@ -27,6 +27,34 @@ How you will be using the topics covered in class in the project.
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
+![uml diagram](tetrisUML.png?raw=true "Tetris UML Diagram" )
+
+Tile:
+- a 1x1 square, the building block of all pieces
+- it contains a color, and a x and y coordinate indicating where it is
+
+Piece:
+- made up of tiles
+- would most likely be abstract
+- x and y would be the coordinates of the center of rotation tile
+- it would contain a color, and a rotation array storing int[] for x and y translations relative to the center to help construct tiles
+- rotateLeft and rotateRight change currentRotation to the next configuration
+- T piece, S piece, Z piece, line piece, etc are children of this class and are the default tetris pieces
+
+Game:
+- it would consist of a board where the main game would be played, represented by charArray with # being occupied tile
+- currentPiece would be the piece that is currently falling down
+- storedPiece allows you to hold one piece and swaps with the currentPiece, instantiated to null at first
+- nextPieces would be a queue implemented as an ArrayDeque showing the next few pieces. Everytime a piece is taken out of it, another piece is added randomly from the available 7 pieces
+- heights is an int[] filled with the current highest tile in each column, it will be used to check if a piece is able to be placed and for gameOver
+- score is an int displaying total number of points so far
+- gravity is how many tiles the currentPiece drops each tick
+- drawBoard will draw the background then draw the current state of the game
+- applyGravity shifts currentPiece down
+- clearLines removes full lines and shifts floating tiles down, it also increases score
+- gameOverCheck checks if a height in heights is above the maximum height
+- softDrop increases gravity until button is released
+- hardDrop increases gravity by a lot to instantly place currentPiece
 
 
 # Intended pacing:
