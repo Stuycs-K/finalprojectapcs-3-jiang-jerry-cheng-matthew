@@ -23,4 +23,8 @@ public class Tile{
     public color getColor(){
         return tileColor;
     }
+    public void display(){
+      fill(tileColor);
+      square(x*40, y*40, 40);
+    }
 }
