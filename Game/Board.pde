@@ -17,4 +17,14 @@ public class Board{
       }
      }
   }
+  
+  public void setTile(Tile newTile){
+    tileBoard[newTile.getX()][newTile.getY()] = newTile;
+  }
+  
+  public void setPiece(Piece newPiece){
+    for (Tile x : newPiece.getTiles()){
+      setTile(x);
+    }
+  }
 }
