@@ -41,6 +41,13 @@ Piece:
 - rotateLeft and rotateRight change currentRotation to the next configuration
 - T piece, S piece, Z piece, line piece, etc are children of this class and are the default tetris pieces
 
+Board:
+- it would contain a Tile[][] to store the current tiles
+- display would draw each tile or draw a blank square if the tile doesn't exist
+- setTile would change x and y of the board to the tile
+- setPiece would add each tile of the piece to the board
+- clearLines removes full lines and shifts floating tiles down, it also increases score
+
 Game:
 - it would consist of a board where the main game would be played, represented by charArray with # being occupied tile
 - currentPiece would be the piece that is currently falling down
@@ -51,7 +58,6 @@ Game:
 - gravity is how many tiles the currentPiece drops each tick
 - drawBoard will draw the background then draw the current state of the game
 - applyGravity shifts currentPiece down
-- clearLines removes full lines and shifts floating tiles down, it also increases score
 - gameOverCheck checks if a height in heights is above the maximum height
 - softDrop increases gravity until button is released
 - hardDrop increases gravity by a lot to instantly place currentPiece

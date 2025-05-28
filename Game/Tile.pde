@@ -25,6 +25,6 @@ public class Tile{
     }
     public void display(){
       fill(tileColor);
-      square(x*SQUARE_SIZE+1, y*SQUARE_SIZE+1, SQUARE_SIZE);
+      square(y*SQUARE_SIZE+1, x*SQUARE_SIZE+1, SQUARE_SIZE);
     }
 }
