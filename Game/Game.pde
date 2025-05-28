@@ -11,4 +11,5 @@ void setup(){
   }
   Board test = new Board();
   test.display();
+  Piece testa = new Piece();
 }
