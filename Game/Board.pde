@@ -1,30 +1,89 @@
 public class Board{
-  Tile[][] tileBoard;
+  ArrayList<Tile[]> tileBoard;
   
-  public Board(){
-    tileBoard = new Tile[10][20];
+  public Board(){//default 20 x 10 board
+    tileBoard = new ArrayList<Tile[]>();
+    for (int i = 0; i < 20; i++){
+      tileBoard.add(new Tile[10]);
+    }
   }
   
   public void display(){
-    for (int i = 0; i < tileBoard.length; i++){
-      for (int j = 0; j < tileBoard[0].length; j++){
-        if (tileBoard[i][j] == null){
+    for (int i = 0; i < tileBoard.size(); i++){
+      for (int j = 0; j < tileBoard.get(0).length; j++){
+        if (tileBoard.get(i)[j] == null){
            fill(color(255,255,255));
-           square(i*SQUARE_SIZE+1, j*SQUARE_SIZE+1, SQUARE_SIZE);
+           square(j*SQUARE_SIZE+1, i*SQUARE_SIZE+1, SQUARE_SIZE);
         }else{
-          tileBoard[i][j].display();
+          tileBoard.get(i)[j].display();
         }
       }
      }
   }
-  
-  public void setTile(Tile newTile){
-    tileBoard[newTile.getX()][newTile.getY()] = newTile;
-  }
-  
-  public void setPiece(Piece newPiece){
-    for (Tile x : newPiece.getTiles()){
-      setTile(x);
+  public void clearBackground(){
+    for (int i = 0; i < tileBoard.size(); i++){
+      for (int j = 0; j < tileBoard.get(0).length; j++){
+           fill(color(255,255,255));
+           square(j*SQUARE_SIZE+1, i*SQUARE_SIZE+1, SQUARE_SIZE);
+      }
     }
   }
+  
+  public void setTile(Tile newTile){
+    tileBoard.get(newTile.getX())[newTile.getY()] = newTile;
+  }
+  
+  // **test this when Piece class is completed** 
+  
+  //public void setPiece(Piece newPiece){
+  //  for (Tile x : newPiece.getTiles()){
+  //    setTile(x);
+  //  }
+  //}
+  public void clearLines(){
+    int newLines = 0;
+    for (int i = 0; i < tileBoard.size(); i++){
+      boolean isfull = true;
+      for (int j = 0; j < tileBoard.get(0).length; j++){
+        if (tileBoard.get(i)[j] == null){
+          isfull = false;
+          break;
+        }
+      }
+      if (isfull){
+        newLines ++;
+        tileBoard.remove(i);
+        System.out.println("removing: " + i);
+      }
+    }
+    
+    for (int i = 0; i < newLines; i++){
+      tileBoard.add(0, new Tile[10]);
+    }
+    updateCoords();
+  }
+  public void updateCoords(){
+    for (int i = 0; i < tileBoard.size(); i++){
+      for (int j = 0; j < tileBoard.get(0).length; j++){
+         if (tileBoard.get(i)[j] instanceof Tile){
+           tileBoard.get(i)[j].setX(i);
+           tileBoard.get(i)[j].setY(j);
+         }
+      }
+    }
+  }
+  public String toString(){
+    String res = "";
+    for (int i = 0; i < tileBoard.size(); i++){
+      for (int j = 0; j < tileBoard.get(0).length; j++){
+        if (tileBoard.get(i)[j] == null){
+          res += ".";
+        }else{
+          res += "#";
+        }
+      }
+      res += "\n";
+  }
+  return res;
+}
 }
