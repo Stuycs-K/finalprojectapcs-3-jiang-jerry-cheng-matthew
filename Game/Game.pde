@@ -30,4 +30,5 @@ void setup(){
   //test.clearBackground();
   //test.display();
   System.out.println(test);
+  Piece aPiece = new Piece();
 }
