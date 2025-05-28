@@ -14,20 +14,20 @@ public class Piece {
   }
   public Piece(int val) {
     int xCenter = 5*SQUARE_SIZE;
-    int yCenter = 0*SQUARE_SIZE;
+    int yCenter =0;
     if (val == T) {
       color Color = color(160, 32, 240);
       tiles[0] = new Tile(xCenter, yCenter, Color);
       tiles[1] = new Tile(xCenter, yCenter+ 1*SQUARE_SIZE, Color);
-      tiles[2] = new Tile(xCenter -1*SQUARE_SIZE, yCenter, Color);
-      tiles[3] = new Tile(xCenter +1*SQUARE_SIZE, yCenter, Color);
+      tiles[2] = new Tile(xCenter -1*SQUARE_SIZE, yCenter + 1 * SQUARE_SIZE, Color);
+      tiles[3] = new Tile(xCenter +1*SQUARE_SIZE, yCenter+ 1*SQUARE_SIZE, Color);
     }
     if (val == O) {
       color Color = color(255, 255, 0);
       tiles[0] = new Tile(xCenter, yCenter, Color);
       tiles[1] = new Tile(xCenter, yCenter + 1*SQUARE_SIZE, Color);
       tiles[2] = new Tile(xCenter-1*SQUARE_SIZE, yCenter, Color);
-      tiles[3] = new Tile(xCenter+1*SQUARE_SIZE, yCenter+1*SQUARE_SIZE, Color);
+      tiles[3] = new Tile(xCenter-1*SQUARE_SIZE, yCenter+1*SQUARE_SIZE, Color);
     }
     if (val == L) {
       color Color = color(255, 165, 0);
@@ -46,16 +46,17 @@ public class Piece {
     if (val == S) {
       color Color = color(0, 255, 0);
       tiles[0] = new Tile(xCenter, yCenter, Color);
-      tiles[1] = new Tile(xCenter+1*SQUARE_SIZE, yCenter + 1*SQUARE_SIZE, Color);
-      tiles[2] = new Tile(xCenter, yCenter+1*SQUARE_SIZE, Color);
-      tiles[3] = new Tile(xCenter-1*SQUARE_SIZE, yCenter, Color);
+      tiles[1] = new Tile(xCenter, yCenter + 1*SQUARE_SIZE, Color);
+      tiles[2] = new Tile(xCenter-1*SQUARE_SIZE, yCenter+1*SQUARE_SIZE, Color);
+      tiles[3] = new Tile(xCenter+1*SQUARE_SIZE, yCenter, Color);
     }
     if (val == Z) {
       color Color = color(255, 0, 0);
       tiles[0] = new Tile(xCenter, yCenter, Color);
-      tiles[1] = new Tile(xCenter, yCenter + 1*SQUARE_SIZE, Color);
-      tiles[2] = new Tile(xCenter-1*SQUARE_SIZE, yCenter+1*SQUARE_SIZE, Color);
-      tiles[3] = new Tile(xCenter+1*SQUARE_SIZE, yCenter, Color);
+      tiles[1] = new Tile(xCenter+1*SQUARE_SIZE, yCenter + 1*SQUARE_SIZE, Color);
+      tiles[2] = new Tile(xCenter, yCenter+1*SQUARE_SIZE, Color);
+      tiles[3] = new Tile(xCenter-1*SQUARE_SIZE, yCenter, Color);
+      
     }
     if (val == I) {
       color Color = color(173,216,230);
