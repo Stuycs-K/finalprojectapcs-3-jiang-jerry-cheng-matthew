@@ -113,8 +113,17 @@ public class Piece {
     for (int i = 0; i< tiles.length;i++){
       if (tiles[i].getY() <= Game.tetris.tileBoard.size() -1){
         tiles[i].setY(tiles[i].getY()+1);
+        System.out.println(this);
       }
       
     }
+  }
+  
+  public String toString(){
+    String printed = "";
+    for (int i = 0; i< tiles.length; i++){
+      printed += tiles[i].toString();
+    }
+    return printed;
   }
 }

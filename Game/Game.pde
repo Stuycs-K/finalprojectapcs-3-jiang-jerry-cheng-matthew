@@ -25,12 +25,13 @@ void keyPressed(){
 
 void draw(){
   tetris.clearBackground();
-  tetris.clearLines();
-
+  
   currentPiece.applyGravity();
-  tetris.updateCoords();
+
+  //tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
   System.out.println(tetris);
+  //System.out.println(currentPiece);
   
 }
