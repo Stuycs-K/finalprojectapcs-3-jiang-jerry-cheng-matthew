@@ -35,11 +35,11 @@ public class Board{
   
   // **test this when Piece class is completed** 
   
-  //public void setPiece(Piece newPiece){
-  //  for (Tile x : newPiece.getTiles()){
-  //    setTile(x);
-  //  }
-  //}
+  public void setPiece(Piece newPiece){
+    for (Tile x : newPiece.tiles){
+      setTile(x);
+    }
+  }
   public void clearLines(){
     int newLines = 0;
     for (int i = 0; i < tileBoard.size(); i++){

@@ -108,4 +108,13 @@ public class Piece {
       tiles[i].display();
       }
   }
+  
+  public void applyGravity(){
+    for (int i = 0; i< tiles.length;i++){
+      if (tiles[i].getY() <= Game.tetris.tileBoard.size() -1){
+        tiles[i].setY(tiles[i].getY()+1);
+      }
+      
+    }
+  }
 }
