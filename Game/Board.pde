@@ -72,6 +72,13 @@ public class Board{
       }
     }
   }
+  public void tick(){
+    Game.currentPiece.applyGravity();
+    
+  }
+  public boolean isOccupied(int x, int y){
+    return tileBoard.get(x)[y] instanceof Tile;
+  }
   public String toString(){
     String res = "";
     for (int i = 0; i < tileBoard.size(); i++){
@@ -85,5 +92,5 @@ public class Board{
       res += "\n";
   }
   return res;
-}
+  }
 }

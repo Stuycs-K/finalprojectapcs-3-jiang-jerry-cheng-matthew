@@ -110,12 +110,27 @@ public class Piece {
   }
   
   public void applyGravity(){
+    boolean collide = false;
     for (int i = 0; i< tiles.length;i++){
-      if (tiles[i].getY() <= Game.tetris.tileBoard.size() -1){
-        tiles[i].setY(tiles[i].getY()+1);
-        System.out.println(this);
+      if (tiles[i].getX() > Game.tetris.tileBoard.size() -2){
+        collide = true;
+        break;
+        //System.out.println(this);
+      }else{
+        if (Game.tetris.isOccupied(tiles[i].getX() + 1, tiles[i].getY())){
+          collide = true;
+          break;
+        }
       }
       
+    }
+    if (collide){
+      Game.tetris.setPiece(this);
+      
+    }else{
+      for (int i = 0; i< tiles.length;i++){
+         tiles[i].setX(tiles[i].getX()+1);
+      }
     }
   }
   

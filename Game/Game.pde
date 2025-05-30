@@ -1,13 +1,13 @@
 public static int SQUARE_SIZE = 40;
 public color BLUE = color(0, 0, 255);
 private static Board tetris;
-private Piece currentPiece;
+private static Piece currentPiece;
 
 void setup(){
   size(1000, 1000);
   tetris = new Board();
   currentPiece = new Piece();
-  tetris.setPiece(currentPiece);
+  //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
   tetris.clearLines();
@@ -19,18 +19,32 @@ void setup(){
   System.out.println(tetris);
   
 }
+void mouseClicked(){
+  
+  currentPiece = new Piece();
+  tetris.updateCoords();
+  currentPiece.displayTiles();
+  tetris.display();
+  System.out.println(tetris);
+}
+
 void keyPressed(){
   
 }
 
 void draw(){
-  tetris.clearBackground();
   
-  currentPiece.applyGravity();
+  if (frameCount % 15 == 0){
+    tetris.tick();
+    tetris.clearBackground();
+    tetris.display();
+    currentPiece.displayTiles();
+    
+  }
 
   //tetris.updateCoords();
-  currentPiece.displayTiles();
-  tetris.display();
+  
+  //tetris.display();
   System.out.println(tetris);
   //System.out.println(currentPiece);
   
