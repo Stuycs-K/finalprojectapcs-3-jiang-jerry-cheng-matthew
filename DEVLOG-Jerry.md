@@ -30,3 +30,17 @@ Changed tileBoard to use an arrayList of tile[] instead of tile[][] to make clea
 
 Changed display in Tile and Board to use (y,x) pixel system to reflect (i, j) coordinates
 
+### 2025-05-29 - Apply Gravity, collision checking, made Game setup/draw
+Added applyGravity method in Piece which would shift every tile in piece down by one if it is not colliding or out of bounds. When collision of out of bounds, it snaps currentPiece to the board.
+
+Added toString() in Piece and toString() in Tile, prints the x, y coords, for debugging purposes
+
+Added isOccupied() in Board to check if given i and j is occupied by a tile, used to check collision
+
+Added tick() in Board, currently calls applyGravity(), makes it so that applyGravity is called based on frameCount. Could call display functions in the future.
+
+Changed Game to setup/draw
+
+Draw is based on frameCount and only redraws the board every 15 frames for now
+
+Added mouseClicked() in Game, currently changes currentPiece to a new random piece, implement this feature in applyGravity in the future.
