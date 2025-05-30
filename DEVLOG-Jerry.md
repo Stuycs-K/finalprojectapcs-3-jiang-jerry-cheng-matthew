@@ -4,17 +4,17 @@ This document must be updated daily every time you finish a work session.
 
 ## Jerry Jiang
 
-### 2025-05-22 - Tile Class
+### 2025-05-22 - Tile Class (5 minutes)
 Added mutator, accessor, and constructor methods
 
 Added instance variables x, y, and color
 
-### 2025-05-23 - Tile Display and start of Board class
+### 2025-05-23 - Tile Display and start of Board class (10 minutes)
 Added display method for Tile, a 1x1 square with size SQUARE_SIZE a constant in Game
 
 Added Board class with basic constructor and tileBoard instance variable, a tile[][]
 
-### 2025-05-27 - Board mutator methods, clearing lines, clearing background, changed coordinate system
+### 2025-05-27 - Board mutator methods, clearing lines, clearing background, changed coordinate system (1 hour 15 minutes)
 Added setTile() and setPiece() methods in the Board class to change tileBoard. setPiece calls the accessor method in Piece class and uses setTile.
 
 Added clearLines() which removes a row if it is full, and add empty row to top, no score tracking yet
@@ -30,7 +30,7 @@ Changed tileBoard to use an arrayList of tile[] instead of tile[][] to make clea
 
 Changed display in Tile and Board to use (y,x) pixel system to reflect (i, j) coordinates
 
-### 2025-05-29 - Apply Gravity, collision checking, made Game setup/draw
+### 2025-05-29 - Apply Gravity, collision checking, made Game setup/draw (1 hour)
 Added applyGravity method in Piece which would shift every tile in piece down by one if it is not colliding or out of bounds. When collision of out of bounds, it snaps currentPiece to the board.
 
 Added toString() in Piece and toString() in Tile, prints the x, y coords, for debugging purposes
