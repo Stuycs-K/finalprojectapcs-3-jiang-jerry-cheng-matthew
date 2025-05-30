@@ -2,6 +2,7 @@ public static int SQUARE_SIZE = 40;
 public color BLUE = color(0, 0, 255);
 private static Board tetris;
 private static Piece currentPiece;
+private int current = 0;
 
 void setup(){
   size(1000, 1000);
@@ -17,6 +18,7 @@ void setup(){
   currentPiece.displayTiles();
   tetris.display();
   System.out.println(tetris);
+  Piece piece =new Piece();
   
 }
 void mouseClicked(){
@@ -29,7 +31,10 @@ void mouseClicked(){
 }
 
 void keyPressed(){
-  
+  if(key == 'j'){
+    //current++;
+    //rotate(current);
+  }
 }
 
 void draw(){

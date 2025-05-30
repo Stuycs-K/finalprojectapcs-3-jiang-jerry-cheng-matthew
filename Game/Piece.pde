@@ -8,12 +8,13 @@ public class Piece {
   private final int Z = 4;
   private final int I = 5;
   private final int O = 6;
-  private int current = 0;
+  private int valPiece;
 
   public Piece() {
-    this((int)(Math.random() * 7));
+    this((int)(Math.random()*7));
   }
   public Piece(int val) {
+    valPiece = val;
     int xCenter = 5;
     int yCenter =0;
     if (val == T) {
@@ -110,7 +111,16 @@ public class Piece {
       tiles[i].display();
       }
   }
+  
+  public void rotate(int current){
+    int hold = Math.abs(current) % 4;
+    for(int i =0; i < 4; i++){
+      tiles[i] = rotations[valPiece][hold][i];
+    }
+  }
   public void fillRotations(){
+    //int currentX = tiles[0].getX();
+    //int currentY = tiles[0].getY();
     int currentX = tiles[0].getX();
     int currentY = tiles[0].getY();
     color Color;
@@ -124,7 +134,15 @@ public class Piece {
         rotations[i][1][0] = new Tile(currentY, currentX,Color);
         rotations[i][1][1] = new Tile(currentY,currentX-1,Color);
         rotations[i][1][2] = new Tile(currentY-1,currentX-1,Color);
-        rotations[i][1][3] = new Tile(currentY,currentX-2,Color);
+        rotations[i][1][3] = new Tile(currentY+1,currentX-1,Color);
+        rotations[i][2][0] = new Tile(currentY, currentX,Color);
+        rotations[i][2][1] = new Tile(currentY-1,currentX,Color);
+        rotations[i][2][2] = new Tile(currentY-1,currentX-1,Color);
+        rotations[i][2][3] = new Tile(currentY-1,currentX+1,Color);
+        rotations[i][3][0] = new Tile(currentY, currentX,Color);
+        rotations[i][3][1] = new Tile(currentY,currentX+1,Color);
+        rotations[i][3][2] = new Tile(currentY-1,currentX+1,Color);
+        rotations[i][3][3] = new Tile(currentY+1,currentX+1,Color);
       }
     }
   }
