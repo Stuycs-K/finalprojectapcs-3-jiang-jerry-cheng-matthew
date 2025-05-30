@@ -119,13 +119,46 @@ public class Piece {
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
         rotations[i][0][1] = new Tile(currentY+1,currentX,Color);
-        rotations[i][0][2] = new Tile(currnetY+1,currentX-1,Color);
+        rotations[i][0][2] = new Tile(currentY+1,currentX-1,Color);
         rotations[i][0][3] = new Tile(currentY+1,currentX+1,Color);
         rotations[i][1][0] = new Tile(currentY, currentX,Color);
         rotations[i][1][1] = new Tile(currentY,currentX-1,Color);
         rotations[i][1][2] = new Tile(currentY-1,currentX-1,Color);
         rotations[i][1][3] = new Tile(currentY,currentX-2,Color);
       }
+    }
+  }
+  
+  public void applyGravity(){
+    boolean collide = false;
+    for (int i = 0; i< tiles.length;i++){
+      if (tiles[i].getX() > Game.tetris.tileBoard.size() -2){
+        collide = true;
+        break;
+        //System.out.println(this);
+      }else{
+        if (Game.tetris.isOccupied(tiles[i].getX() + 1, tiles[i].getY())){
+          collide = true;
+          break;
+        }
+      }
       
+    }
+    if (collide){
+      Game.tetris.setPiece(this);
+      
+    }else{
+      for (int i = 0; i< tiles.length;i++){
+         tiles[i].setX(tiles[i].getX()+1);
+      }
+    }
+  }
+  
+  public String toString(){
+    String printed = "";
+    for (int i = 0; i< tiles.length; i++){
+      printed += tiles[i].toString();
+    }
+    return printed;
   }
 }

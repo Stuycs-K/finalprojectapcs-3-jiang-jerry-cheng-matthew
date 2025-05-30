@@ -35,11 +35,11 @@ public class Board{
   
   // **test this when Piece class is completed** 
   
-  //public void setPiece(Piece newPiece){
-  //  for (Tile x : newPiece.getTiles()){
-  //    setTile(x);
-  //  }
-  //}
+  public void setPiece(Piece newPiece){
+    for (Tile x : newPiece.tiles){
+      setTile(x);
+    }
+  }
   public void clearLines(){
     int newLines = 0;
     for (int i = 0; i < tileBoard.size(); i++){
@@ -72,6 +72,13 @@ public class Board{
       }
     }
   }
+  public void tick(){
+    Game.currentPiece.applyGravity();
+    
+  }
+  public boolean isOccupied(int x, int y){
+    return tileBoard.get(x)[y] instanceof Tile;
+  }
   public String toString(){
     String res = "";
     for (int i = 0; i < tileBoard.size(); i++){
@@ -85,5 +92,5 @@ public class Board{
       res += "\n";
   }
   return res;
-}
+  }
 }

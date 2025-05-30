@@ -1,34 +1,51 @@
 public static int SQUARE_SIZE = 40;
 public color BLUE = color(0, 0, 255);
+private static Board tetris;
+private static Piece currentPiece;
+
 void setup(){
   size(1000, 1000);
+  tetris = new Board();
+  currentPiece = new Piece();
+  //tetris.setPiece(currentPiece);
   
-  Board test = new Board();
-  test.display();
-  test.setTile(new Tile(0, 1, BLUE));
-  test.display();
-  test.setTile(new Tile(2, 2, BLUE));
-  test.display();
-  for (int i = 0; i < 10; i++){
-    test.setTile(new Tile(1, i, BLUE));
+  tetris.clearBackground();
+  tetris.clearLines();
+
+  currentPiece.applyGravity();
+  tetris.updateCoords();
+  currentPiece.displayTiles();
+  tetris.display();
+  System.out.println(tetris);
+  
+}
+void mouseClicked(){
+  
+  currentPiece = new Piece();
+  tetris.updateCoords();
+  currentPiece.displayTiles();
+  tetris.display();
+  System.out.println(tetris);
+}
+
+void keyPressed(){
+  
+}
+
+void draw(){
+  
+  if (frameCount % 15 == 0){
+    tetris.tick();
+    tetris.clearBackground();
+    tetris.display();
+    currentPiece.displayTiles();
+    
   }
+
+  //tetris.updateCoords();
   
-  test.display();
+  //tetris.display();
+  System.out.println(tetris);
+  //System.out.println(currentPiece);
   
-  test.clearLines();
-  test.clearBackground();
-  test.display();
-  //System.out.println(test);
-  //test.setTile(new Tile(0, 0, BLUE));
-  //test.clearBackground();
-  //test.display();
-  
-  //for (int i = 0; i < 10; i++){
-  //  test.setTile(new Tile(1, i, BLUE));
-  //}
-  //test.clearLines();
-  //test.clearBackground();
-  //test.display();
-  System.out.println(test);
-  Piece aPiece = new Piece();
 }

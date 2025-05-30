@@ -27,4 +27,8 @@ public class Tile{
       fill(tileColor);
       square(y*SQUARE_SIZE+1, x*SQUARE_SIZE+1, SQUARE_SIZE);
     }
+    
+    public String toString(){
+      return " " + getX() + " " + getY() + ", ";
+    }
 }
