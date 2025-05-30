@@ -29,6 +29,18 @@ void mouseClicked(){
 }
 
 void keyPressed(){
+  if (key =='a'){
+    currentPiece.moveLeft();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
+  }
+  if (key =='d'){
+    currentPiece.moveRight();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
+  }
   
 }
 
@@ -36,9 +48,7 @@ void draw(){
   
   if (frameCount % 15 == 0){
     tetris.tick();
-    tetris.clearBackground();
-    tetris.display();
-    currentPiece.displayTiles();
+    Game.tetris.clearLines();
     
   }
 

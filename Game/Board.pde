@@ -60,7 +60,10 @@ public class Board{
     for (int i = 0; i < newLines; i++){
       tileBoard.add(0, new Tile[10]);
     }
-    updateCoords();
+    if (newLines > 0){
+      updateCoords();
+    }
+    
   }
   public void updateCoords(){
     for (int i = 0; i < tileBoard.size(); i++){
@@ -74,6 +77,9 @@ public class Board{
   }
   public void tick(){
     Game.currentPiece.applyGravity();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
     
   }
   public boolean isOccupied(int x, int y){
