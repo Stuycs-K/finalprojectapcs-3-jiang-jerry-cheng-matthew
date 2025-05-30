@@ -39,6 +39,7 @@ public class Board{
     for (Tile x : newPiece.tiles){
       setTile(x);
     }
+    updateCoords();
   }
   public void clearLines(){
     int newLines = 0;
@@ -77,6 +78,7 @@ public class Board{
   }
   public void tick(){
     Game.currentPiece.applyGravity();
+    Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();

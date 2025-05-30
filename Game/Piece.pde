@@ -146,7 +146,7 @@ public class Piece {
     }
     if (collide){
       Game.tetris.setPiece(this);
-      
+      Game.currentPiece = new Piece();
     }else{
       for (int i = 0; i< tiles.length;i++){
          tiles[i].setX(tiles[i].getX()+1);

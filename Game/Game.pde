@@ -48,14 +48,16 @@ void draw(){
   
   if (frameCount % 15 == 0){
     tetris.tick();
-    Game.tetris.clearLines();
+    
     
   }
+  
+  
 
   //tetris.updateCoords();
   
   //tetris.display();
-  System.out.println(tetris);
+  //System.out.println(tetris);
   //System.out.println(currentPiece);
   
 }
