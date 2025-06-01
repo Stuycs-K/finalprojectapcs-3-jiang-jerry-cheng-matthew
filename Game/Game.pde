@@ -13,13 +13,13 @@ void setup(){
   tetris.clearBackground();
   tetris.clearLines();
 
-  currentPiece.applyGravity();
+  //currentPiece.applyGravity();
   tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
   
   System.out.println(tetris);
-  Piece piece =new Piece();
+
   
 }
 void mouseClicked(){
@@ -33,10 +33,15 @@ void mouseClicked(){
 
 void keyPressed(){
 
-  if(key == 'j'){
+  if(key == 'k'){
     current++;
     currentPiece.rotate(current);
-    tetris.display();
+    
+  }
+  if(key == 'j'){
+    current--;
+    currentPiece.rotate(current);
+    
   }
 
   if (key =='a'){
@@ -57,7 +62,7 @@ void keyPressed(){
 
 void draw(){
   
-  if (frameCount % 15 == 0){
+  if (frameCount % 30 == 0){
     tetris.tick();
 
     tetris.clearBackground();
