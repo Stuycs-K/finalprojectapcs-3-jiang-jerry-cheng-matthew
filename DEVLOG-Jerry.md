@@ -51,3 +51,14 @@ Added moveLeft in Piece, checks for out of bounds, moves every tile in Piece lef
 Added moveRight in Piece, checks for out of bounds, moves every tile in Piece right, called when letter d is pressed
 
 Changed applyGravity so that when currentpiece snaps on, it reassigns currentpiece
+
+### 2025-06-01 - gameOver (20 minutes)
+Added boolean gameOver in Game, initially false
+
+Made it so that when you click with the mouse and its gameOver, it runs setup again
+
+Added a check in setTile in Board so when it tries setting an occupied tile, it makes gameOver true
+
+Made it so that draw has extra check to tick()
+
+Changed applyGravity to not set new currentPiece when gameOver
