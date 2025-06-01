@@ -120,8 +120,9 @@ public class Piece {
     }
   }
   public void fillRotations(){
-    int currentX = tiles[0].getX();
-    int currentY = tiles[0].getY();
+    int currentX = 5;
+    int currentY = 5;
+    
     color Color;
     for(int i = 0; i < 6; i++){
       if (i == 0){
