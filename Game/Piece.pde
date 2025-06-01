@@ -9,6 +9,8 @@ public class Piece {
   private final int I = 5;
   private final int O = 6;
   private int valPiece;
+  private int currentX;
+  private int currentY;
 
   public Piece() {
     this((int)(Math.random()*7));
@@ -100,6 +102,8 @@ public class Piece {
       tiles[0] = new Tile(yCenter,xCenter,Color);
       tiles[3] = new Tile(yCenter,xCenter+2,Color);
     }
+    currentX = tiles[0].getX();
+    currentY = tiles[0].getY();
     displayTiles();
     fillRotations();
   }
@@ -116,15 +120,20 @@ public class Piece {
     int hold = Math.abs(current) % 4;
     for(int i =0; i < tiles.length; i++){
       tiles[i] = rotations[0][hold][i];
-      tiles[i].display();
+      
     }
   }
   public void fillRotations(){
-    int currentX = 5;
-    int currentY = 5;
+    
     
     color Color;
     for(int i = 0; i < 6; i++){
+      if(currentY - 2 < 0 || currentY - 1 < 0){
+        currentY = 0;
+      }
+      if(currentX - 2 < 0 || currentX - 1 < 0){
+        currentX = 0;
+      }
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
@@ -135,6 +144,25 @@ public class Piece {
         rotations[i][1][1] = new Tile(currentY,currentX-1,Color);
         rotations[i][1][2] = new Tile(currentY-1,currentX-1,Color);
         rotations[i][1][3] = new Tile(currentY+1,currentX-1,Color);
+        rotations[i][2][0] = new Tile(currentY, currentX,Color);
+        rotations[i][2][1] = new Tile(currentY-1,currentX,Color);
+        rotations[i][2][2] = new Tile(currentY-1,currentX-1,Color);
+        rotations[i][2][3] = new Tile(currentY-1,currentX+1,Color);
+        rotations[i][3][0] = new Tile(currentY, currentX,Color);
+        rotations[i][3][1] = new Tile(currentY,currentX+1,Color);
+        rotations[i][3][2] = new Tile(currentY-1,currentX+1,Color);
+        rotations[i][3][3] = new Tile(currentY+1,currentX+1,Color);
+      }
+      if( i == 1){
+        Color = color(255,165,0);
+        rotations[i][0][0] = new Tile(currentY, currentX,Color);
+        rotations[i][0][1] = new Tile(currentY+1,currentX,Color);
+        rotations[i][0][2] = new Tile(currentY+1,currentX+1,Color);
+        rotations[i][0][3] = new Tile(currentY+1,currentX+2,Color);
+        rotations[i][1][0] = new Tile(currentY+1, currentX+1,Color);
+        rotations[i][1][1] = new Tile(currentY,currentX+2,Color);
+        rotations[i][1][2] = new Tile(currentY+1,currentX+1,Color);
+        rotations[i][1][3] = new Tile(currentY-2,currentX,Color);
         rotations[i][2][0] = new Tile(currentY, currentX,Color);
         rotations[i][2][1] = new Tile(currentY-1,currentX,Color);
         rotations[i][2][2] = new Tile(currentY-1,currentX-1,Color);
