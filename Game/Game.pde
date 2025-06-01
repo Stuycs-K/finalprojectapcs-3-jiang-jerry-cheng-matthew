@@ -51,7 +51,7 @@ void keyPressed(){
 
 void draw(){
   
-  if (frameCount % 3 == 0 && !gameOver){
+  if (frameCount % 15 == 0 && !gameOver){
     tetris.tick();
     
     
