@@ -17,6 +17,7 @@ void setup(){
   tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
+  
   System.out.println(tetris);
   Piece piece =new Piece();
   
@@ -32,8 +33,9 @@ void mouseClicked(){
 
 void keyPressed(){
   if(key == 'j'){
-    //current++;
-    //rotate(current);
+    current++;
+    currentPiece.rotate(current);
+    tetris.display();
   }
 }
 
@@ -42,11 +44,11 @@ void draw(){
   if (frameCount % 15 == 0){
     tetris.tick();
     tetris.clearBackground();
+    
     tetris.display();
     currentPiece.displayTiles();
     
   }
-
   //tetris.updateCoords();
   
   //tetris.display();

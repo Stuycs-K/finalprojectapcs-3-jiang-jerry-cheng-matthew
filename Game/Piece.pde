@@ -114,13 +114,12 @@ public class Piece {
   
   public void rotate(int current){
     int hold = Math.abs(current) % 4;
-    for(int i =0; i < 4; i++){
-      tiles[i] = rotations[valPiece][hold][i];
+    for(int i =0; i < tiles.length; i++){
+      tiles[i] = rotations[0][hold][i];
+      tiles[i].display();
     }
   }
   public void fillRotations(){
-    //int currentX = tiles[0].getX();
-    //int currentY = tiles[0].getY();
     int currentX = tiles[0].getX();
     int currentY = tiles[0].getY();
     color Color;
