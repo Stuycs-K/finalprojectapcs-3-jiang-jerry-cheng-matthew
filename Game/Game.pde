@@ -32,27 +32,52 @@ void mouseClicked(){
 }
 
 void keyPressed(){
+
   if(key == 'j'){
     current++;
     currentPiece.rotate(current);
     tetris.display();
   }
+
+  if (key =='a'){
+    currentPiece.moveLeft();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
+  }
+  if (key =='d'){
+    currentPiece.moveRight();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
+  }
+  
+
 }
 
 void draw(){
   
   if (frameCount % 15 == 0){
     tetris.tick();
+
     tetris.clearBackground();
     
     tetris.display();
     currentPiece.displayTiles();
     
   }
+
+    
+    
+  }
+  
+  
+
+
   //tetris.updateCoords();
   
   //tetris.display();
-  System.out.println(tetris);
+  //System.out.println(tetris);
   //System.out.println(currentPiece);
   
 }

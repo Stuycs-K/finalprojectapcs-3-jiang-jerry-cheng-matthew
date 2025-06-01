@@ -192,13 +192,65 @@ public class Piece {
     }
     if (collide){
       Game.tetris.setPiece(this);
-      
+      Game.currentPiece = new Piece();
     }else{
       for (int i = 0; i< tiles.length;i++){
          tiles[i].setX(tiles[i].getX()+1);
       }
     }
   }
+  
+  
+  public void moveLeft(){
+    boolean collide = false;
+    for (int i = 0; i< tiles.length;i++){
+      if (tiles[i].getY() < 1){
+        collide = true;
+        break;
+        //System.out.println(this);
+      }else{
+        if (Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY() -1)){
+          collide = true;
+          break;
+        }
+      }
+      
+    }
+    if (collide){
+      //Game.tetris.setPiece(this);
+      
+    }else{
+      for (int i = 0; i< tiles.length;i++){
+         tiles[i].setY(tiles[i].getY()-1);
+      }
+    }
+  }
+  
+  public void moveRight(){
+    boolean collide = false;
+    for (int i = 0; i< tiles.length;i++){
+      if (tiles[i].getY() > Game.tetris.tileBoard.get(0).length -2){
+        collide = true;
+        break;
+        //System.out.println(this);
+      }else{
+        if (Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY() +1)){
+          collide = true;
+          break;
+        }
+      }
+      
+    }
+    if (collide){
+      //Game.tetris.setPiece(this);
+      
+    }else{
+      for (int i = 0; i< tiles.length;i++){
+         tiles[i].setY(tiles[i].getY()+1);
+      }
+    }
+  }
+  
   
   public String toString(){
     String printed = "";
