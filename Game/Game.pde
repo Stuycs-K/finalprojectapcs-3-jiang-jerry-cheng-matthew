@@ -2,10 +2,15 @@ public static int SQUARE_SIZE = 40;
 public color BLUE = color(0, 0, 255);
 private static Board tetris;
 private static Piece currentPiece;
+
 private int current = 0;
+
+private static boolean gameOver;
+
 
 void setup(){
   size(1000, 1000);
+  gameOver = false;
   tetris = new Board();
   currentPiece = new Piece();
   //tetris.setPiece(currentPiece);
@@ -23,12 +28,15 @@ void setup(){
   
 }
 void mouseClicked(){
-  
-  currentPiece = new Piece();
-  tetris.updateCoords();
-  currentPiece.displayTiles();
-  tetris.display();
-  System.out.println(tetris);
+  if (gameOver){
+    setup();
+  }else{
+    currentPiece = new Piece();
+    tetris.updateCoords();
+    currentPiece.displayTiles();
+    tetris.display();
+    System.out.println(tetris);
+  }
 }
 
 void keyPressed(){
@@ -62,7 +70,9 @@ void keyPressed(){
 
 void draw(){
   
-  if (frameCount % 30 == 0){
+
+  if (frameCount % 15 == 0 && !gameOver){
+
     tetris.tick();
 
     tetris.clearBackground();
@@ -72,11 +82,14 @@ void draw(){
     
   }
 
+
     
-    
-  }
   
   
+  
+
+  System.out.println("gameOver: " + gameOver);
+}
 
 
   //tetris.updateCoords();

@@ -44,3 +44,21 @@ Changed Game to setup/draw
 Draw is based on frameCount and only redraws the board every 15 frames for now
 
 Added mouseClicked() in Game, currently changes currentPiece to a new random piece, implement this feature in applyGravity in the future.
+
+### 2025-05-30 - Moving current Piece (45 minutes)
+Added moveLeft in Piece, checks for out of bounds, moves every tile in Piece left, called when letter a is pressed
+
+Added moveRight in Piece, checks for out of bounds, moves every tile in Piece right, called when letter d is pressed
+
+Changed applyGravity so that when currentpiece snaps on, it reassigns currentpiece
+
+### 2025-06-01 - gameOver (20 minutes)
+Added boolean gameOver in Game, initially false
+
+Made it so that when you click with the mouse and its gameOver, it runs setup again
+
+Added a check in setTile in Board so when it tries setting an occupied tile, it makes gameOver true
+
+Made it so that draw has extra check to tick()
+
+Changed applyGravity to not set new currentPiece when gameOver

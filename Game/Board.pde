@@ -30,7 +30,12 @@ public class Board{
   }
   
   public void setTile(Tile newTile){
-    tileBoard.get(newTile.getX())[newTile.getY()] = newTile;
+    if (isOccupied(newTile.getX(), newTile.getY())){
+      Game.gameOver = true;
+    }else{
+      tileBoard.get(newTile.getX())[newTile.getY()] = newTile;
+    }
+    
   }
   
   // **test this when Piece class is completed** 
