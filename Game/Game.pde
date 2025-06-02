@@ -51,6 +51,11 @@ void keyPressed(){
     currentPiece.rotate(current);
     
   }
+  if(key == 'l'){
+    current+= 2;
+    currentPiece.rotate(current);
+    
+  }
 
   if (key =='a'){
     currentPiece.moveLeft();
