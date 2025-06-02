@@ -13,7 +13,7 @@ void setup(){
   tetris.clearBackground();
   tetris.clearLines();
 
-  //currentPiece.applyGravity();
+  currentPiece.applyGravity();
   tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
