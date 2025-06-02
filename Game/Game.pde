@@ -3,16 +3,20 @@ public color BLUE = color(0, 0, 255);
 private static Board tetris;
 private static Piece currentPiece;
 
-private int current = 0;
 
 private static boolean gameOver;
-
+private static int gameSpeed;
+private static int originalGameSpeed;
+private static boolean isSoftDrop;
 
 void setup(){
   size(1000, 1000);
   gameOver = false;
   tetris = new Board();
   currentPiece = new Piece();
+  gameSpeed = 20;
+  originalGameSpeed = 20;
+  isSoftDrop = false;
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
@@ -24,7 +28,7 @@ void setup(){
   tetris.display();
   
   System.out.println(tetris);
-
+  
   
 }
 void mouseClicked(){
@@ -42,18 +46,27 @@ void mouseClicked(){
 void keyPressed(){
 
   if(key == 'k'){
-    current++;
-    currentPiece.rotate(current);
+    currentPiece.current++;
+    currentPiece.rotate();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
     
   }
   if(key == 'j'){
-    current--;
-    currentPiece.rotate(current);
+    currentPiece.current--;
+    currentPiece.rotate();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
     
   }
   if(key == 'l'){
-    current+= 2;
-    currentPiece.rotate(current);
+    currentPiece.current+= 2;
+    currentPiece.rotate();
+    Game.tetris.clearBackground();
+    Game.tetris.display();
+    Game.currentPiece.displayTiles();
     
   }
 
@@ -69,14 +82,29 @@ void keyPressed(){
     Game.tetris.display();
     Game.currentPiece.displayTiles();
   }
+  if (key == 's'){
+    if (isSoftDrop){
+      
+    }else{
+      
+      gameSpeed /= 3;
+      isSoftDrop = true;
+    }
+  }
   
 
+}
+void keyReleased() {
+  if (key == 's') {
+    gameSpeed = originalGameSpeed;
+    isSoftDrop = false;
+  }
 }
 
 void draw(){
   
 
-  if (frameCount % 15 == 0 && !gameOver){
+  if (frameCount % gameSpeed == 0 && !gameOver){
 
     tetris.tick();
 

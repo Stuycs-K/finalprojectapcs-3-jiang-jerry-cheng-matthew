@@ -12,6 +12,7 @@ public class Piece {
   private int valPiece;
   private int currentX;
   private int currentY;
+  private int current;
 
   public Piece() {
     this((int)(Math.random()*7));
@@ -117,7 +118,7 @@ public class Piece {
       }
   }
   
-  public void rotate(int current){
+  public void rotate(){
     if (valPiece == O){
     }
     else{
