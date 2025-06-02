@@ -141,6 +141,7 @@ public class Piece {
     for(int i = 0; i < 6; i++){
       currentX =tiles[0].getY();
     currentY = tiles[0].getX();
+    
       if(currentY - 2 < 0){
         currentY = 1;
       }
