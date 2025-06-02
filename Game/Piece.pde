@@ -221,6 +221,25 @@ public class Piece {
         rotations[i][3][2] = new Tile(currentY,currentX,Color);
         rotations[i][3][3] = new Tile(currentY-1,currentX,Color);
       }
+      if( i == 4){
+        Color = color(0,255,0);
+        rotations[i][0][0] = new Tile(currentY, currentX,Color);
+        rotations[i][0][1] = new Tile(currentY,currentX-1,Color);
+        rotations[i][0][2] = new Tile(currentY+1,currentX,Color);
+        rotations[i][0][3] = new Tile(currentY+1,currentX+1,Color);
+        rotations[i][1][0] = new Tile(currentY, currentX,Color);
+        rotations[i][1][1] = new Tile(currentY-1,currentX,Color);
+        rotations[i][1][2] = new Tile(currentY,currentX-1,Color);
+        rotations[i][1][3] = new Tile(currentY+1,currentX-1,Color);
+        rotations[i][2][0] = new Tile(currentY-1, currentX,Color);
+        rotations[i][2][1] = new Tile(currentY-1,currentX-1,Color);
+        rotations[i][2][2] = new Tile(currentY,currentX,Color);
+        rotations[i][2][3] = new Tile(currentY,currentX+1,Color);
+        rotations[i][3][0] = new Tile(currentY, currentX+1,Color);
+        rotations[i][3][1] = new Tile(currentY-1,currentX+1,Color);
+        rotations[i][3][2] = new Tile(currentY,currentX,Color);
+        rotations[i][3][3] = new Tile(currentY+1,currentX,Color);
+      }
     }
   }
   
