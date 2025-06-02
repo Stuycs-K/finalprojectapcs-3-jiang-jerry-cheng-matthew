@@ -154,6 +154,9 @@ public class Piece {
       if(currentY + 4 > 20 ){
         currentY = 16;
       }
+      if(currentX + 4 > 10 ){
+        currentX = 6;
+      }
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
