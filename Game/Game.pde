@@ -1,3 +1,4 @@
+import java.util.*;
 public static int SQUARE_SIZE = 40;
 public color BLUE = color(0, 0, 255);
 private static Board tetris;
@@ -8,6 +9,8 @@ private static boolean gameOver;
 private static int gameSpeed;
 private static int originalGameSpeed;
 private static boolean isSoftDrop;
+private static boolean isHardDrop;
+private int[] heights;
 
 void setup(){
   size(1000, 1000);
@@ -17,6 +20,8 @@ void setup(){
   gameSpeed = 20;
   originalGameSpeed = 20;
   isSoftDrop = false;
+  isHardDrop = false;
+  heights = new int[10];
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
@@ -91,6 +96,9 @@ void keyPressed(){
       isSoftDrop = true;
     }
   }
+  if (key == ' '){
+    currentPiece.hardDrop();
+  }
   
 
 }
@@ -120,8 +128,9 @@ void draw(){
   
   
   
-
-  System.out.println("gameOver: " + gameOver);
+  heights = tetris.findMaxHeights();
+  System.out.println(Arrays.toString(heights));
+  //System.out.println("gameOver: " + gameOver);
 }
 
 

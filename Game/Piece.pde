@@ -276,15 +276,15 @@ public class Piece {
     }
   }
   
-  public void applyGravity(){
+  public void applyGravity(int amount){
     boolean collide = false;
     for (int i = 0; i< tiles.length;i++){
-       if(tiles[i].getX()>Game.tetris.tileBoard.size()-2){
+       if(tiles[i].getX()>Game.tetris.tileBoard.size()-1-amount){
         collide = true;
         break;
         //System.out.println(this);
       }else{
-        if (Game.tetris.isOccupied(tiles[i].getX() + 1, tiles[i].getY())){
+        if (Game.tetris.isOccupied(tiles[i].getX() + amount, tiles[i].getY())){
           collide = true;
           break;
         }
@@ -301,9 +301,27 @@ public class Piece {
       
     }else{
       for (int i = 0; i< tiles.length;i++){
-         tiles[i].setX(tiles[i].getX()+1);
+         tiles[i].setX(tiles[i].getX()+amount);
       }
     }
+  }
+  
+  public boolean gravityCollision(int amount){
+    boolean collide = false;
+    for (int i = 0; i< tiles.length;i++){
+       if(tiles[i].getX()>Game.tetris.tileBoard.size()-1-amount){
+        collide = true;
+        break;
+        //System.out.println(this);
+      }else{
+        if (Game.tetris.isOccupied(tiles[i].getX() + amount, tiles[i].getY())){
+          collide = true;
+          break;
+        }
+      }
+      
+    }
+    return collide;
   }
   
   
@@ -354,6 +372,10 @@ public class Piece {
       for (int i = 0; i< tiles.length;i++){
          tiles[i].setY(tiles[i].getY()+1);
       }
+    }
+  }
+  public void hardDrop(){
+    for (int i = 20; i > 0; i++){
     }
   }
   
