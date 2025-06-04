@@ -44,6 +44,10 @@ public class Board{
     for (Tile x : newPiece.tiles){
       setTile(x);
     }
+    if (Game.isHardDrop){
+      Game.gameSpeed = originalGameSpeed;
+      Game.isHardDrop = false;
+    }
     updateCoords();
   }
   public void clearLines(){
@@ -82,7 +86,7 @@ public class Board{
     }
   }
   public void tick(){
-    Game.currentPiece.applyGravity();
+    Game.currentPiece.applyGravity(1);
     Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();
@@ -105,5 +109,21 @@ public class Board{
       res += "\n";
   }
   return res;
+  }
+  
+  
+  public int[] findMaxHeights(){
+    int[] maxHeights = new int[10];
+    int index = 0;
+    for (int i = 0; i < tileBoard.get(i).length; i ++){
+      for (int j = 0; j < tileBoard.size(); j++){
+        if (tileBoard.get(j)[i] instanceof Tile){
+          maxHeights[index] = j; 
+          break;
+        }
+      }
+      index ++;
+    }
+    return maxHeights;
   }
 }
