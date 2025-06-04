@@ -144,10 +144,8 @@ public class Piece {
     for(int i = 0; i < 6; i++){
       currentX =tiles[0].getY();
     currentY = tiles[0].getX();
-      if(checkCollision()){
-        currentX = maxX;
-        currentY = maxY;
-      }
+    
+    
       if(currentY - 2 < 0){
         currentY = 1;
       }
@@ -163,6 +161,9 @@ public class Piece {
       if(currentX + 4 > 10 ){
         currentX = 6;
       }
+      int[] hold = collide();
+    currentX = hold[1];
+    currentY = hold[0];
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
@@ -279,46 +280,83 @@ public class Piece {
          rotationsI[3][3] = new Tile(currentY+3,currentX,Color);
       }
     }
-  }
+}
   
+  public int[] collide(){
+    int[] returnVals = new int[2];
+    returnVals[0] = tiles[0].getX();
+    returnVals[1] = tiles[0].getY();
+    
+      if( tiles[0].getX() > 0 && Game.tetris.isOccupied(tiles[0].getX()-1,tiles[0].getY())){
+        if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
+          returnVals[0] = tiles[0].getX();
+          returnVals[1] = tiles[0].getY() + 1;
+        }
+        else{
+          returnVals[0] = tiles[0].getX()+1;
+          returnVals[1]= tiles[0].getY();
+      }
+      }
+      else if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
+        returnVals[0] = tiles[0].getX() -1;
+        returnVals[1] = tiles[0].getY();
+      }
+   
+      if( tiles[0].getY() > 0 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()-1)){
+        if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
+          returnVals[0] = tiles[0].getX();
+          returnVals[1] = tiles[0].getY() + 2;
+        }
+        else{
+          returnVals[0] = tiles[0].getX();
+          returnVals[1]= tiles[0].getY()+1;
+      }
+      }
+      else if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
+        returnVals[0] = tiles[0].getX();
+        returnVals[1] = tiles[0].getY()+2;
+      }
+  return returnVals;
+  }
+      
 
   
-  public boolean checkCollision(){
-    boolean collide = false;
-    for(int i = 0; i < tiles.length;i++){
-      if(tiles[i].getX() > 0 && Game.tetris.isOccupied(tiles[i].getX() -1, tiles[i].getY())){
-        collide = true;
-        maxX = 1;
-        break;
-      }
-      if(tiles[i].getX() > 1 && Game.tetris.isOccupied(tiles[i].getX() -2, tiles[i].getY())){
-        collide = true;
-        maxX = 2;
-        break;
-      }
-      if(tiles[i].getX() > 2 && Game.tetris.isOccupied(tiles[i].getX() -3, tiles[i].getY())){
-        collide = true;
-        maxX = 3;
-        break;
-      }
-      if(tiles[i].getY() > 0 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-1)){
-        collide = true;
-        maxY = 1;
-        break;
-      }
-      if(tiles[i].getY() > 1 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-2)){
-        collide = true;
-        maxY = 2;
-        break;
-      }
-      if(tiles[i].getY() > 2 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-3)){
-        collide = true;
-        maxY = 3;
-        break;
-      }
-    }
-    return collide;
-  }
+  //public boolean checkCollision(){
+  //  boolean collide = false;
+  //  for(int i = 0; i < tiles.length;i++){
+  //    if(tiles[i].getX() > 0 && Game.tetris.isOccupied(tiles[i].getX() -1, tiles[i].getY())){
+  //      collide = true;
+  //      maxX = 1;
+  //      break;
+  //    }
+  //    if(tiles[i].getX() > 1 && Game.tetris.isOccupied(tiles[i].getX() -2, tiles[i].getY())){
+  //      collide = true;
+  //      maxX = 2;
+  //      break;
+  //    }
+  //    if(tiles[i].getX() > 2 && Game.tetris.isOccupied(tiles[i].getX() -3, tiles[i].getY())){
+  //      collide = true;
+  //      maxX = 3;
+  //      break;
+  //    }
+  //    if(tiles[i].getY() > 0 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-1)){
+  //      collide = true;
+  //      maxY = 1;
+  //      break;
+  //    }
+  //    if(tiles[i].getY() > 1 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-2)){
+  //      collide = true;
+  //      maxY = 2;
+  //      break;
+  //    }
+  //    if(tiles[i].getY() > 2 && Game.tetris.isOccupied(tiles[i].getX(), tiles[i].getY()-3)){
+  //      collide = true;
+  //      maxY = 3;
+  //      break;
+  //    }
+  //  }
+  //  return collide;
+  //}
   public void applyGravity(){
     boolean collide = false;
     for (int i = 0; i< tiles.length;i++){
@@ -333,6 +371,7 @@ public class Piece {
         }
       }
     }
+    
   }
 
   public void applyGravity(int amount){
