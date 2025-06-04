@@ -86,7 +86,7 @@ public class Board{
     }
   }
   public void tick(){
-    Game.currentPiece.applyGravity();
+    Game.currentPiece.applyGravity(1);
     Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();

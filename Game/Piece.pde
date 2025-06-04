@@ -277,20 +277,20 @@ public class Piece {
   }
   
   public void applyGravity(int amount){
-    boolean collide = false;
-    for (int i = 0; i< tiles.length;i++){
-       if(tiles[i].getX()>Game.tetris.tileBoard.size()-1-amount){
-        collide = true;
-        break;
-        //System.out.println(this);
-      }else{
-        if (Game.tetris.isOccupied(tiles[i].getX() + amount, tiles[i].getY())){
-          collide = true;
-          break;
-        }
-      }
+    boolean collide = gravityCollision(amount);
+    //for (int i = 0; i< tiles.length;i++){
+    //   if(tiles[i].getX()>Game.tetris.tileBoard.size()-1-amount){
+    //    collide = true;
+    //    break;
+    //    //System.out.println(this);
+    //  }else{
+    //    if (Game.tetris.isOccupied(tiles[i].getX() + amount, tiles[i].getY())){
+    //      collide = true;
+    //      break;
+    //    }
+    //  }
       
-    }
+    //}
     if (collide){
       Game.tetris.setPiece(this);
       if (Game.gameOver){
@@ -375,8 +375,15 @@ public class Piece {
     }
   }
   public void hardDrop(){
-    for (int i = 20; i > 0; i++){
+    
+    for (int i = 0; i < 20; i++){
+      if (gravityCollision(i)){
+        applyGravity(i-1);
+        System.out.println("applying Gravity amount: " + i);
+        break;
+      }
     }
+    Game.tetris.tick();
   }
   
   

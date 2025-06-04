@@ -27,7 +27,7 @@ void setup(){
   tetris.clearBackground();
   tetris.clearLines();
 
-  currentPiece.applyGravity();
+  currentPiece.applyGravity(1);
   tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
@@ -97,7 +97,13 @@ void keyPressed(){
     }
   }
   if (key == ' '){
-    currentPiece.hardDrop();
+    if (!gameOver){
+      currentPiece.hardDrop();
+      Game.tetris.clearBackground();
+      Game.tetris.display();
+      Game.currentPiece.displayTiles();
+    }
+    
   }
   
 
@@ -128,8 +134,8 @@ void draw(){
   
   
   
-  heights = tetris.findMaxHeights();
-  System.out.println(Arrays.toString(heights));
+  //heights = tetris.findMaxHeights();
+  //System.out.println(Arrays.toString(heights));
   //System.out.println("gameOver: " + gameOver);
 }
 
