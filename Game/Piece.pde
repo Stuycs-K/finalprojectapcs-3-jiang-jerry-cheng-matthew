@@ -109,7 +109,6 @@ public class Piece {
     displayTiles();
     fillRotations();
   }
-  
   public void displayTiles(){
     for(int i = 0; i < tiles.length; i++){
       //fill(tiles[i].getColor());

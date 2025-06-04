@@ -10,6 +10,7 @@ private static int gameSpeed;
 private static int originalGameSpeed;
 private static boolean isSoftDrop;
 private static boolean isHardDrop;
+private static Piece heldPiece;
 private int[] heights;
 
 void setup(){
@@ -22,12 +23,13 @@ void setup(){
   isSoftDrop = false;
   isHardDrop = false;
   heights = new int[10];
+  heldPiece = null;
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
   tetris.clearLines();
 
-  currentPiece.applyGravity(1);
+  //currentPiece.applyGravity(1);
   tetris.updateCoords();
   currentPiece.displayTiles();
   tetris.display();
@@ -105,8 +107,25 @@ void keyPressed(){
     }
     
   }
+  if (key == 'h'){
+      hold();
+  }
   
 
+}
+
+void hold(){
+  if (heldPiece == null){
+    heldPiece = new Piece(currentPiece.valPiece);
+    currentPiece = new Piece();
+  }else{
+    int temp = currentPiece.valPiece;
+    currentPiece = new Piece(heldPiece.valPiece);
+    heldPiece = new Piece(temp);
+  }
+  Game.tetris.clearBackground();
+  Game.tetris.display();
+  Game.currentPiece.displayTiles();
 }
 void keyReleased() {
   if (key == 's') {
