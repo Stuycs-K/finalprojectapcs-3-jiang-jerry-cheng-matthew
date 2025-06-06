@@ -1,5 +1,5 @@
 public class Board{
-  ArrayList<Tile[]> tileBoard;
+  private ArrayList<Tile[]> tileBoard;
   
   public Board(){//default 20 x 10 board
     tileBoard = new ArrayList<Tile[]>();
@@ -71,6 +71,16 @@ public class Board{
       tileBoard.add(0, new Tile[10]);
     }
     if (newLines > 0){
+      
+      if (newLines == 1){
+        Game.score += 40;
+      }else if (newLines == 2){
+        Game.score += 100;
+      }else if (newLines == 3){
+        Game.score += 300;
+      }else if (newLines == 4){
+        Game.score += 1200;
+      }
       updateCoords();
     }
     
@@ -91,6 +101,7 @@ public class Board{
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.tetris.displayHeldPiece();
+    Game.tetris.displayScore();
     Game.currentPiece.displayTiles();
     
   }
@@ -148,5 +159,11 @@ public class Board{
       }
       System.out.println();
     }
+  }
+  public void displayScore(){
+    fill(255);
+    rect(10*SQUARE_SIZE, 6*SQUARE_SIZE, 5*SQUARE_SIZE, 1*SQUARE_SIZE);
+    fill(0);
+    text("score: " + Game.score, 11*SQUARE_SIZE, 6.5*SQUARE_SIZE );
   }
 }

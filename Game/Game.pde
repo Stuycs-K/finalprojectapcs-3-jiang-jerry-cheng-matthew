@@ -11,6 +11,8 @@ private static int originalGameSpeed;
 private static boolean isSoftDrop;
 private static boolean isHardDrop;
 private static Piece heldPiece;
+private static int score;
+
 private int[] heights;
 
 void setup(){
@@ -133,6 +135,7 @@ void keyReleased() {
     isSoftDrop = false;
   }
 }
+
 
 void draw(){
   
