@@ -90,10 +90,11 @@ public class Board{
     Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayHeldPiece();
     Game.currentPiece.displayTiles();
     
   }
-  public boolean isOccupied(int x, int y){
+  public boolean isOccupied(int x, int y){ 
     return tileBoard.get(x)[y] instanceof Tile;
   }
   public String toString(){
@@ -125,5 +126,27 @@ public class Board{
       index ++;
     }
     return maxHeights;
+  }
+  public void displayHeldPiece(){
+    fill(255);
+    square(10*SQUARE_SIZE, 0, 5*SQUARE_SIZE);
+    if (Game.heldPiece != null){
+      int x = Game.heldPiece.tiles[0].getX();
+      int y = Game.heldPiece.tiles[0].getY();
+      float shift = 12;
+      for (Tile tile: Game.heldPiece.tiles){
+        fill(tile.getColor());
+        System.out.println("x: " + (tile.getX()-x) + " y: " + (tile.getY()-y));
+        if ( Game.heldPiece.valPiece == Piece.I){
+          shift = 11.5;
+        }
+        if (Game.heldPiece.valPiece == Piece.O){
+          shift = 12.5;
+        }
+        square((tile.getY()-y  + shift) * SQUARE_SIZE, (tile.getX()-x+1) *SQUARE_SIZE, SQUARE_SIZE);
+        
+      }
+      System.out.println();
+    }
   }
 }
