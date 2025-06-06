@@ -85,3 +85,10 @@ Added hold() method in Game which would swap currentPiece with heldPiece, or jus
 When h key is pressed, hold() is called
 
 Added displayHeldPiece method in Board, attempted to display the tiles for the held piece, doesn't work currently
+
+### 2025-06-05 - heldPiece Display (20 minutes)
+Fixed displayHeldPiece to display the held piece on the side of the board properly, special cases for O and I Pieces so that it is centered on the display.
+
+Made variables in Piece that corresponds to a certain piece (ex: T, L, I, O, J) static
+
+Removed redundant code in draw(), since tick already calls clearBackground, display, etc
