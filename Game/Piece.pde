@@ -13,16 +13,15 @@ public class Piece {
   private int currentX;
   private int currentY;
   private int current;
-  private int maxX = 0;
-  private int maxY = 0;
-
+  private int xCenter = 5;
+  private int yCenter =3 ;
+  private int[] hold = Game.tetris.findMaxHeights();
   public Piece() {
     this((int)(Math.random()*7));
   }
   public Piece(int val) {
     valPiece = val;
-    int xCenter = 5;
-    int yCenter =0;
+    
     if (val == T) {
       color Color = color(160, 32, 240);
       //tiles[0] = new Tile(xCenter, yCenter, Color);
@@ -160,9 +159,13 @@ public class Piece {
       if(currentX + 4 > 10 ){
         currentX = 6;
       }
-      int[] hold = collide();
-    currentX = hold[1];
-    currentY = hold[0];
+      
+
+      int val = 2;
+      if(valPiece == I){
+        val = 3;
+      }
+      currentY = hold[currentX] - val;
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
@@ -278,45 +281,46 @@ public class Piece {
          rotationsI[3][2] = new Tile(currentY+2, currentX,Color);
          rotationsI[3][3] = new Tile(currentY+3,currentX,Color);
       }
+      
     }
 }
   
-  public int[] collide(){
-    int[] returnVals = new int[2];
-    returnVals[0] = tiles[0].getX();
-    returnVals[1] = tiles[0].getY();
+  //public int[] collide(){
+  //  int[] returnVals = new int[2];
+  //  returnVals[0] = tiles[0].getX();
+  //  returnVals[1] = tiles[0].getY();
     
-      if( tiles[0].getX() > 0 && Game.tetris.isOccupied(tiles[0].getX()-1,tiles[0].getY())){
-        if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
-          returnVals[0] = tiles[0].getX();
-          returnVals[1] = tiles[0].getY() + 1;
-        }
-        else{
-          returnVals[0] = tiles[0].getX()+1;
-          returnVals[1]= tiles[0].getY();
-      }
-      }
-      else if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
-        returnVals[0] = tiles[0].getX() -1;
-        returnVals[1] = tiles[0].getY();
-      }
+  //    if( tiles[0].getX() > 0 && Game.tetris.isOccupied(tiles[0].getX()-1,tiles[0].getY())){
+  //      if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
+  //        returnVals[0] = tiles[0].getX();
+  //        returnVals[1] = tiles[0].getY() + 1;
+  //      }
+  //      else{
+  //        returnVals[0] = tiles[0].getX()+1;
+  //        returnVals[1]= tiles[0].getY();
+  //    }
+  //    }
+  //    else if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
+  //      returnVals[0] = tiles[0].getX() -1;
+  //      returnVals[1] = tiles[0].getY();
+  //    }
    
-      if( tiles[0].getY() > 0 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()-1)){
-        if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
-          returnVals[0] = tiles[0].getX();
-          returnVals[1] = tiles[0].getY() + 2;
-        }
-        else{
-          returnVals[0] = tiles[0].getX();
-          returnVals[1]= tiles[0].getY()+1;
-      }
-      }
-      else if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
-        returnVals[0] = tiles[0].getX();
-        returnVals[1] = tiles[0].getY()+2;
-      }
-  return returnVals;
-  }
+  //    if( tiles[0].getY() > 0 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()-1)){
+  //      if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
+  //        returnVals[0] = tiles[0].getX();
+  //        returnVals[1] = tiles[0].getY() + 2;
+  //      }
+  //      else{
+  //        returnVals[0] = tiles[0].getX();
+  //        returnVals[1]= tiles[0].getY()+1;
+  //    }
+  //    }
+  //    else if( tiles[0].getY() <19 && Game.tetris.isOccupied(tiles[0].getX(),tiles[0].getY()+1)){
+  //      returnVals[0] = tiles[0].getX();
+  //      returnVals[1] = tiles[0].getY()+2;
+  //    }
+  //return returnVals;
+  //}
       
 
   
