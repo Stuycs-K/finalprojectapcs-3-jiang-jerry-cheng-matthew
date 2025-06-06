@@ -2,13 +2,13 @@ public class Piece {
   private Tile[] tiles = new Tile[4];
   private Tile[][][] rotations = new Tile[6][4][4];
   private Tile[][] rotationsI = new Tile[4][4];
-  private final int T = 0;
-  private final int L = 1;
-  private final int J = 2;
-  private final int S = 3;
-  private final int Z = 4;
-  private final int I = 5;
-  private final int O = 6;
+  private static final int T = 0;
+  private static final int L = 1;
+  private static final int J = 2;
+  private static final int S = 3;
+  private static final int Z = 4;
+  private static final int I = 5;
+  private static final int O = 6;
   private int valPiece;
   private int currentX;
   private int currentY;
@@ -111,7 +111,6 @@ public class Piece {
     displayTiles();
     fillRotations();
   }
-  
   public void displayTiles(){
     for(int i = 0; i < tiles.length; i++){
       //fill(tiles[i].getColor());
@@ -439,7 +438,7 @@ public class Piece {
     for (int i = 0; i < 20; i++){
       if (gravityCollision(i)){
         applyGravity(i-1);
-        System.out.println("applying Gravity amount: " + i);
+        //System.out.println("applying Gravity amount: " + i);
         break;
       }
     }

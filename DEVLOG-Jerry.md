@@ -62,3 +62,33 @@ Added a check in setTile in Board so when it tries setting an occupied tile, it 
 Made it so that draw has extra check to tick()
 
 Changed applyGravity to not set new currentPiece when gameOver
+
+### 2025-06-02 - softDrop (10 minutes)
+Added gameSpeed and originalGameSpeed variables in Game, higher means slower
+
+Added softDrop implementation, would divide gameSpeed by 3 when s key is pressed, boolean isSoftDrop is added to help with this
+
+Added keyReleased method, when s key is released, gameSpeed would be set back to normal
+
+### 2025-06-03 - hardDrop (30 minutes)
+Changed applyGravity in Piece to add any amount to x not just 1
+
+Added gravityCollision method in Piece which returns whether applying an amount of gravity would cause a collision
+
+Added hardDrop method in Piece which checks for the first gravity amount that causes a collision then applys gravity to currentPiece for that amount -1. This method calls tick() after to snap the currentPiece instantly
+
+Added to keyPressed method in Game, when spacebar is pressed, it calls hardDrop when game is not over
+
+### 2025-06-04 - holding Pieces (15 minutes)
+Added hold() method in Game which would swap currentPiece with heldPiece, or just store currentPiece if there is no heldPiece
+
+When h key is pressed, hold() is called
+
+Added displayHeldPiece method in Board, attempted to display the tiles for the held piece, doesn't work currently
+
+### 2025-06-05 - heldPiece Display (20 minutes)
+Fixed displayHeldPiece to display the held piece on the side of the board properly, special cases for O and I Pieces so that it is centered on the display.
+
+Made variables in Piece that corresponds to a certain piece (ex: T, L, I, O, J) static
+
+Removed redundant code in draw(), since tick already calls clearBackground, display, etc
