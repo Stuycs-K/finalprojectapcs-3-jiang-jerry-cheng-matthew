@@ -141,10 +141,7 @@ void draw(){
 
     tetris.tick();
 
-    tetris.clearBackground();
-    
-    tetris.display();
-    currentPiece.displayTiles();
+
     
   }
 
@@ -153,15 +150,9 @@ void draw(){
   
   
   
-  //heights = tetris.findMaxHeights();
-  //System.out.println(Arrays.toString(heights));
-  //System.out.println("gameOver: " + gameOver);
+
 }
 
 
-  //tetris.updateCoords();
-  
-  //tetris.display();
-  //System.out.println(tetris);
-  //System.out.println(currentPiece);
+
   

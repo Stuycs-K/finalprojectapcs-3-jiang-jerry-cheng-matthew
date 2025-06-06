@@ -133,11 +133,20 @@ public class Board{
     if (Game.heldPiece != null){
       int x = Game.heldPiece.tiles[0].getX();
       int y = Game.heldPiece.tiles[0].getY();
+      float shift = 12;
       for (Tile tile: Game.heldPiece.tiles){
         fill(tile.getColor());
-        square(tile.getY() - y + SQUARE_SIZE, tile.getX() - x+ 11*SQUARE_SIZE, SQUARE_SIZE);
+        System.out.println("x: " + (tile.getX()-x) + " y: " + (tile.getY()-y));
+        if ( Game.heldPiece.valPiece == Piece.I){
+          shift = 11.5;
+        }
+        if (Game.heldPiece.valPiece == Piece.O){
+          shift = 12.5;
+        }
+        square((tile.getY()-y  + shift) * SQUARE_SIZE, (tile.getX()-x+1) *SQUARE_SIZE, SQUARE_SIZE);
         
       }
+      System.out.println();
     }
   }
 }
