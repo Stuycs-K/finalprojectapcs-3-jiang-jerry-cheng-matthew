@@ -161,19 +161,25 @@ public class Piece {
       if(currentX + 4 > 10 ){
         currentX = 6;
       }
-      boolean coll = false;
-      
+
       for(int j = 0; j < 4;j++){
-        if(star && Game.tetris.isOccupied(rotations[valPiece][holdH][j].getX(),rotations[valPiece][holdH][j].getY())){
-          coll = true;
+        if(valPiece == I){
+          if(star && Game.tetris.isOccupied(rotationsI[holdH][j].getX(),rotationsI[holdH][j].getY())){
+            currentY = Game.tetris.findMaxHeights(currentX,currentY,true);
+          }
         }
-      }
-      if(coll){
-        if (valPiece == I){
-          currentY+=4;
+        else if(star && Game.tetris.isOccupied(rotations[valPiece][holdH][j].getX(),rotations[valPiece][holdH][j].getY())){
+          currentY = Game.tetris.findMaxHeights(currentX,currentY,true);
         }
+        
       }
-      currentY = Game.tetris.findMaxHeights(currentX,currentY,coll);
+      //currentY = Game.tetris.findMaxHeights(currentX,currentY,coll);
+      
+      //if(coll){
+      //  if (valPiece == I){
+      //    currentY-=4;
+      //  }
+      //}
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);

@@ -126,14 +126,18 @@ public class Board{
   public int findMaxHeights(int x, int y, boolean collide){
     int val =y;
       if(collide){
-        for (int j = y+1 ; j < tileBoard.size(); j++){
-        if (tileBoard.get(j)[x] instanceof Tile){
-           val = maxH(x,val);
-          break;
+        for(int i = 0; i < 3; i++){
+            for (int j = y+1 ; j < tileBoard.size(); j++){
+              if (tileBoard.get(j)[x+i] instanceof Tile && val > j){
+                val =j;
+                if(i == 2){
+                  break;
+                }
+              }
+            }
+          }
         }
-      }
-      }
-      return val;
+      return val-1;
     }
   public void displayHeldPiece(){
     fill(255);
