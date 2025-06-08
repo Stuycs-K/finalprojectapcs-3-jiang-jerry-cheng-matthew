@@ -13,6 +13,7 @@ private static boolean isHardDrop;
 private static Piece heldPiece;
 private static int score;
 
+
 private int[] heights;
 
 void setup(){
@@ -26,6 +27,8 @@ void setup(){
   isHardDrop = false;
   heights = new int[10];
   heldPiece = null;
+  score = 0;
+  isClearingLines = false;
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();

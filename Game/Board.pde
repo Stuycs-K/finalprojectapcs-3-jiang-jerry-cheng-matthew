@@ -49,6 +49,7 @@ public class Board{
       Game.isHardDrop = false;
     }
     updateCoords();
+    clearLines();
   }
   public void clearLines(){
     int newLines = 0;
@@ -63,6 +64,7 @@ public class Board{
       if (isfull){
         newLines ++;
         tileBoard.remove(i);
+        i--;
         System.out.println("removing: " + i);
       }
     }
@@ -83,7 +85,7 @@ public class Board{
       }
       updateCoords();
     }
-    
+
   }
   public void updateCoords(){
     for (int i = 0; i < tileBoard.size(); i++){
@@ -97,7 +99,7 @@ public class Board{
   }
   public void tick(){
     Game.currentPiece.applyGravity(1);
-    Game.tetris.clearLines();
+    //Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.tetris.displayHeldPiece();
