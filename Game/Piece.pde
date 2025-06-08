@@ -355,7 +355,8 @@ public class Piece {
       if (Game.gameOver){
         
       }else{
-        Game.currentPiece = new Piece();
+        Game.tetris.next();
+        //Game.currentPiece = new Piece();
       }
       
     }else{

@@ -12,7 +12,8 @@ private static boolean isSoftDrop;
 private static boolean isHardDrop;
 private static Piece heldPiece;
 private static int score;
-
+private static Piece nextPiece;
+private static ArrayList<Piece> bag;
 
 private int[] heights;
 
@@ -20,7 +21,10 @@ void setup(){
   size(1000, 1000);
   gameOver = false;
   tetris = new Board();
+  bag = new ArrayList<Piece>();
   currentPiece = new Piece();
+  nextPiece = new Piece();
+  tetris.next();
   gameSpeed = 20;
   originalGameSpeed = 20;
   isSoftDrop = false;
@@ -28,7 +32,7 @@ void setup(){
   heights = new int[10];
   heldPiece = null;
   score = 0;
-  isClearingLines = false;
+  
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
@@ -132,6 +136,7 @@ void hold(){
   Game.tetris.display();
   Game.currentPiece.displayTiles();
 }
+
 void keyReleased() {
   if (key == 's') {
     gameSpeed = originalGameSpeed;
