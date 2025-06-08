@@ -1,5 +1,5 @@
 public class Board{
-  ArrayList<Tile[]> tileBoard;
+  private ArrayList<Tile[]> tileBoard;
   
   public Board(){//default 20 x 10 board
     tileBoard = new ArrayList<Tile[]>();
@@ -49,6 +49,7 @@ public class Board{
       Game.isHardDrop = false;
     }
     updateCoords();
+    clearLines();
   }
   public void clearLines(){
     int newLines = 0;
@@ -63,6 +64,7 @@ public class Board{
       if (isfull){
         newLines ++;
         tileBoard.remove(i);
+        i--;
         System.out.println("removing: " + i);
       }
     }
@@ -71,9 +73,18 @@ public class Board{
       tileBoard.add(0, new Tile[10]);
     }
     if (newLines > 0){
+      
+      if (newLines == 1){
+        Game.score += 40;
+      }else if (newLines == 2){
+        Game.score += 100;
+      }else if (newLines == 3){
+        Game.score += 300;
+      }else if (newLines == 4){
+        Game.score += 1200;
+      }
       updateCoords();
     }
-    
   }
   public void updateCoords(){
     for (int i = 0; i < tileBoard.size(); i++){
@@ -87,13 +98,18 @@ public class Board{
   }
   public void tick(){
     Game.currentPiece.applyGravity(1);
-    Game.tetris.clearLines();
+    //Game.tetris.clearLines();
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.tetris.displayHeldPiece();
+    Game.tetris.displayNextPiece();
+    Game.tetris.displayScore();
+    
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
     
   }
+
   public int maxH(int x, int y){
     int val =0;
     for(int i = y; i > 0;i--){
@@ -104,7 +120,23 @@ public class Board{
     }
     return val;
   }
+  public void next(){
+    if (bag.size() <= 0){
+      for (int i = 0; i < 7; i++){
+        bag.add(new Piece(i));
+      }
+    }
+    int rand = (int)(Math.random() * bag.size());
+    Piece temp = nextPiece;
+    nextPiece = bag.remove(rand);
+    currentPiece = temp;
+    displayGhostPiece();
+
+  }
   public boolean isOccupied(int x, int y){ 
+    if (x < 0 || y < 0){
+      return true;
+    }
     return tileBoard.get(x)[y] instanceof Tile;
   }
   public String toString(){
@@ -141,7 +173,8 @@ public class Board{
     }
   public void displayHeldPiece(){
     fill(255);
-    square(10*SQUARE_SIZE, 0, 5*SQUARE_SIZE);
+    square(10*SQUARE_SIZE, 15*SQUARE_SIZE, 5*SQUARE_SIZE);
+    
     if (Game.heldPiece != null){
       int x = Game.heldPiece.tiles[0].getX();
       int y = Game.heldPiece.tiles[0].getY();
@@ -155,10 +188,44 @@ public class Board{
         if (Game.heldPiece.valPiece == Piece.O){
           shift = 12.5;
         }
+        square((tile.getY()-y  + shift) * SQUARE_SIZE, (tile.getX()-x+16) *SQUARE_SIZE, SQUARE_SIZE);
+        
+      }
+      System.out.println();
+    }
+  }
+  public void displayScore(){
+    fill(255);
+    rect(10*SQUARE_SIZE, 6*SQUARE_SIZE, 5*SQUARE_SIZE, 1*SQUARE_SIZE);
+    fill(0);
+    text("score: " + Game.score, 11*SQUARE_SIZE, 6.5*SQUARE_SIZE );
+  }
+  
+  public void displayNextPiece(){
+    fill(255);
+    square(10*SQUARE_SIZE, 0, 5*SQUARE_SIZE);
+    if (Game.nextPiece != null){
+      int x = Game.nextPiece.tiles[0].getX();
+      int y = Game.nextPiece.tiles[0].getY();
+      float shift = 12;
+      for (Tile tile: Game.nextPiece.tiles){
+        fill(tile.getColor());
+        System.out.println("x: " + (tile.getX()-x) + " y: " + (tile.getY()-y));
+        if ( Game.nextPiece.valPiece == Piece.I){
+          shift = 11.5;
+        }
+        if (Game.nextPiece.valPiece == Piece.O){
+          shift = 12.5;
+        }
         square((tile.getY()-y  + shift) * SQUARE_SIZE, (tile.getX()-x+1) *SQUARE_SIZE, SQUARE_SIZE);
         
       }
       System.out.println();
     }
+  }
+  public void displayGhostPiece(){
+    ghostPiece = currentPiece.copyPiece();
+    ghostPiece.ghostHardDrop();
+    ghostPiece.displayTiles();
   }
 }

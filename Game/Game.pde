@@ -11,19 +11,29 @@ private static int originalGameSpeed;
 private static boolean isSoftDrop;
 private static boolean isHardDrop;
 private static Piece heldPiece;
+private static int score;
+private static Piece nextPiece;
+private static ArrayList<Piece> bag;
+private static Piece ghostPiece;
 private int[] heights;
 
 void setup(){
   size(1000, 1000);
   gameOver = false;
   tetris = new Board();
+  bag = new ArrayList<Piece>();
   currentPiece = new Piece();
+  nextPiece = new Piece();
+  tetris.next();
   gameSpeed = 20;
   originalGameSpeed = 20;
   isSoftDrop = false;
   isHardDrop = false;
   heights = new int[10];
   heldPiece = null;
+  score = 0;
+  ghostPiece = currentPiece;
+  
   //tetris.setPiece(currentPiece);
   
   tetris.clearBackground();
@@ -31,7 +41,9 @@ void setup(){
 
   //currentPiece.applyGravity(1);
   tetris.updateCoords();
+  Game.tetris.displayGhostPiece();
   currentPiece.displayTiles();
+ 
   tetris.display();
   
   System.out.println(tetris);
@@ -44,7 +56,9 @@ void mouseClicked(){
   }else{
     currentPiece = new Piece();
     tetris.updateCoords();
+    Game.tetris.displayGhostPiece();
     currentPiece.displayTiles();
+    
     tetris.display();
     System.out.println(tetris);
   }
@@ -57,7 +71,9 @@ void keyPressed(){
     currentPiece.rotate();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
+    
     
   }
   if(key == 'j'){
@@ -65,7 +81,9 @@ void keyPressed(){
     currentPiece.rotate();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
+    
     
   }
   if(key == 'l'){
@@ -73,7 +91,9 @@ void keyPressed(){
     currentPiece.rotate();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
+    
     
   }
 
@@ -81,13 +101,17 @@ void keyPressed(){
     currentPiece.moveLeft();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
+    
   }
   if (key =='d'){
     currentPiece.moveRight();
     Game.tetris.clearBackground();
     Game.tetris.display();
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
+    
   }
   if (key == 's'){
     if (isSoftDrop){
@@ -103,7 +127,9 @@ void keyPressed(){
       currentPiece.hardDrop();
       Game.tetris.clearBackground();
       Game.tetris.display();
+      Game.tetris.displayGhostPiece();
       Game.currentPiece.displayTiles();
+      
     }
     
   }
@@ -125,14 +151,18 @@ void hold(){
   }
   Game.tetris.clearBackground();
   Game.tetris.display();
+  Game.tetris.displayGhostPiece();
   Game.currentPiece.displayTiles();
+  
 }
+
 void keyReleased() {
   if (key == 's') {
     gameSpeed = originalGameSpeed;
     isSoftDrop = false;
   }
 }
+
 
 void draw(){
   

@@ -107,8 +107,12 @@ public class Piece {
     }
     currentX =tiles[0].getY();
     currentY = tiles[0].getX();
+
     displayTiles();
     fillRotations(0,false);
+
+    //displayTiles();
+
   }
   public void displayTiles(){
     for(int i = 0; i < tiles.length; i++){
@@ -413,7 +417,8 @@ public class Piece {
       if (Game.gameOver){
         
       }else{
-        Game.currentPiece = new Piece();
+        Game.tetris.next();
+        //Game.currentPiece = new Piece();
       }
       
     }else{
@@ -501,6 +506,44 @@ public class Piece {
       }
     }
     Game.tetris.tick();
+  }
+  public void ghostHardDrop(){
+    for (int i = 0; i < 20; i++){
+      if (gravityCollision(i)){
+        applyGravity(i-1);
+        //System.out.println("applying Gravity amount: " + i);
+        break;
+      }
+    }
+  }
+  public Piece copyPiece(){
+    Piece copy = new Piece(this.valPiece);
+    for (int i = 0; i < 4; i++){
+      color original = this.tiles[i].getColor();
+      float lighterR = red(original);
+      float lighterG = green(original);
+      float lighterB = blue(original);
+      if (lighterR == 0){
+        lighterR = 153;
+      }
+       if (lighterG == 0){
+        lighterG = 153;
+      }
+      if (lighterB == 0){
+        lighterB = 153;
+      }
+     
+      color lighter = color(lighterR, lighterG, lighterB);
+      if (this.valPiece == L){
+        lighter = color(255, 201, 153);
+      }else if (this.valPiece == T){
+        lighter = color(217, 166, 249);
+      }else if (this.valPiece == I){
+        lighter = color(222, 239, 245);
+      }
+      copy.tiles[i] = new Tile(this.tiles[i].getX(), this.tiles[i].getY(),lighter );
+    }
+    return copy;
   }
   
   
