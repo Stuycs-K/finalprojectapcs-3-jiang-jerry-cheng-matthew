@@ -15,7 +15,7 @@ public class Piece {
   private int current;
   private int xCenter = 5;
   private int yCenter =3 ;
-  private int[] hold = Game.tetris.findMaxHeights();
+  private boolean start = false;
   public Piece() {
     this((int)(Math.random()*7));
   }
@@ -108,7 +108,7 @@ public class Piece {
     currentX =tiles[0].getY();
     currentY = tiles[0].getX();
     displayTiles();
-    fillRotations();
+    fillRotations(0,false);
   }
   public void displayTiles(){
     for(int i = 0; i < tiles.length; i++){
@@ -119,11 +119,13 @@ public class Piece {
   }
   
   public void rotate(){
+    boolean start = true;
     if (valPiece == O){
     }
     else{
-    fillRotations();
-    int hold = Math.abs(current) % 4;
+      int hold = Math.abs(current) % 4;
+    fillRotations(hold,start);
+    
     for(int i =0; i < tiles.length; i++){
       if(valPiece == I){
         tiles[i] = rotationsI[hold][i];
@@ -135,7 +137,7 @@ public class Piece {
     }
     }
   }
-  public void fillRotations(){
+  public void fillRotations(int holdH,boolean star){
     
     
     color Color;
@@ -159,13 +161,19 @@ public class Piece {
       if(currentX + 4 > 10 ){
         currentX = 6;
       }
+      boolean coll = false;
       
-
-      int val = 2;
-      if(valPiece == I){
-        val = 3;
+      for(int j = 0; j < 4;j++){
+        if(star && Game.tetris.isOccupied(rotations[valPiece][holdH][j].getX(),rotations[valPiece][holdH][j].getY())){
+          coll = true;
+        }
       }
-      currentY = hold[currentX] - val;
+      if(coll){
+        if (valPiece == I){
+          currentY+=4;
+        }
+      }
+      currentY = Game.tetris.findMaxHeights(currentX,currentY,coll);
       if (i == 0){
         Color = color(160, 32, 240);
         rotations[i][0][0] = new Tile(currentY, currentX,Color);
@@ -284,6 +292,7 @@ public class Piece {
       
     }
 }
+
   
   //public int[] collide(){
   //  int[] returnVals = new int[2];
@@ -292,7 +301,7 @@ public class Piece {
     
   //    if( tiles[0].getX() > 0 && Game.tetris.isOccupied(tiles[0].getX()-1,tiles[0].getY())){
   //      if( tiles[0].getX() <10 && Game.tetris.isOccupied(tiles[0].getX()+1,tiles[0].getY())){
-  //        returnVals[0] = tiles[0].getX();
+  //        returnVals[0] = tiles[0].getX();  
   //        returnVals[1] = tiles[0].getY() + 1;
   //      }
   //      else{

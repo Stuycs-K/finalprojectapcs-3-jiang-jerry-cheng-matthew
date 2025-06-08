@@ -94,6 +94,16 @@ public class Board{
     Game.currentPiece.displayTiles();
     
   }
+  public int maxH(int x, int y){
+    int val =0;
+    for(int i = y; i > 0;i--){
+      if(!(tileBoard.get(i)[x] instanceof Tile)){
+         val = i; 
+         break;
+      }
+    }
+    return val;
+  }
   public boolean isOccupied(int x, int y){ 
     return tileBoard.get(x)[y] instanceof Tile;
   }
@@ -113,20 +123,18 @@ public class Board{
   }
   
   
-  public int[] findMaxHeights(){
-    int[] maxHeights = new int[10];
-    int index = 0;
-    for (int i = 0; i < tileBoard.get(i).length; i ++){
-      for (int j = 0; j < tileBoard.size(); j++){
-        if (tileBoard.get(j)[i] instanceof Tile){
-          maxHeights[index] = j; 
+  public int findMaxHeights(int x, int y, boolean collide){
+    int val =y;
+      if(collide){
+        for (int j = y+1 ; j < tileBoard.size(); j++){
+        if (tileBoard.get(j)[x] instanceof Tile){
+           val = maxH(x,val);
           break;
         }
       }
-      index ++;
+      }
+      return val;
     }
-    return maxHeights;
-  }
   public void displayHeldPiece(){
     fill(255);
     square(10*SQUARE_SIZE, 0, 5*SQUARE_SIZE);
