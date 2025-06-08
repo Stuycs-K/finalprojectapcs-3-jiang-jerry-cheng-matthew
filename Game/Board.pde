@@ -109,6 +109,17 @@ public class Board{
     Game.currentPiece.displayTiles();
     
   }
+
+  public int maxH(int x, int y){
+    int val =0;
+    for(int i = y; i > 0;i--){
+      if(!(tileBoard.get(i)[x] instanceof Tile)){
+         val = i; 
+         break;
+      }
+    }
+    return val;
+  }
   public void next(){
     if (bag.size() <= 0){
       for (int i = 0; i < 7; i++){
@@ -120,6 +131,7 @@ public class Board{
     nextPiece = bag.remove(rand);
     currentPiece = temp;
     displayGhostPiece();
+
   }
   public boolean isOccupied(int x, int y){ 
     if (x < 0 || y < 0){
@@ -143,20 +155,22 @@ public class Board{
   }
   
   
-  public int[] findMaxHeights(){
-    int[] maxHeights = new int[10];
-    int index = 0;
-    for (int i = 0; i < tileBoard.get(i).length; i ++){
-      for (int j = 0; j < tileBoard.size(); j++){
-        if (tileBoard.get(j)[i] instanceof Tile){
-          maxHeights[index] = j; 
-          break;
+  public int findMaxHeights(int x, int y, boolean collide){
+    int val =y;
+      if(collide){
+        for(int i = 0; i < 3; i++){
+            for (int j = y+1 ; j < tileBoard.size(); j++){
+              if (tileBoard.get(j)[x+i] instanceof Tile && val > j){
+                val =j;
+                if(i == 2){
+                  break;
+                }
+              }
+            }
+          }
         }
-      }
-      index ++;
+      return val-1;
     }
-    return maxHeights;
-  }
   public void displayHeldPiece(){
     fill(255);
     square(10*SQUARE_SIZE, 15*SQUARE_SIZE, 5*SQUARE_SIZE);
