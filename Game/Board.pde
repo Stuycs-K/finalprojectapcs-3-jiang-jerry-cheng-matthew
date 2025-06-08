@@ -104,6 +104,8 @@ public class Board{
     Game.tetris.displayHeldPiece();
     Game.tetris.displayNextPiece();
     Game.tetris.displayScore();
+    
+    Game.tetris.displayGhostPiece();
     Game.currentPiece.displayTiles();
     
   }
@@ -117,8 +119,12 @@ public class Board{
     Piece temp = nextPiece;
     nextPiece = bag.remove(rand);
     currentPiece = temp;
+    displayGhostPiece();
   }
   public boolean isOccupied(int x, int y){ 
+    if (x < 0 || y < 0){
+      return true;
+    }
     return tileBoard.get(x)[y] instanceof Tile;
   }
   public String toString(){
@@ -202,5 +208,10 @@ public class Board{
       }
       System.out.println();
     }
+  }
+  public void displayGhostPiece(){
+    ghostPiece = currentPiece.copyPiece();
+    ghostPiece.ghostHardDrop();
+    ghostPiece.displayTiles();
   }
 }

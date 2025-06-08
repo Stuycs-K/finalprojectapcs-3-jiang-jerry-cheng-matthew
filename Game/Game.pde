@@ -14,7 +14,7 @@ private static Piece heldPiece;
 private static int score;
 private static Piece nextPiece;
 private static ArrayList<Piece> bag;
-
+private static Piece ghostPiece;
 private int[] heights;
 
 void setup(){
@@ -32,6 +32,7 @@ void setup(){
   heights = new int[10];
   heldPiece = null;
   score = 0;
+  ghostPiece = currentPiece;
   
   //tetris.setPiece(currentPiece);
   
@@ -41,6 +42,7 @@ void setup(){
   //currentPiece.applyGravity(1);
   tetris.updateCoords();
   currentPiece.displayTiles();
+  Game.tetris.displayGhostPiece();
   tetris.display();
   
   System.out.println(tetris);
@@ -54,6 +56,7 @@ void mouseClicked(){
     currentPiece = new Piece();
     tetris.updateCoords();
     currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
     tetris.display();
     System.out.println(tetris);
   }
@@ -67,6 +70,7 @@ void keyPressed(){
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
     
   }
   if(key == 'j'){
@@ -75,6 +79,7 @@ void keyPressed(){
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
     
   }
   if(key == 'l'){
@@ -83,6 +88,7 @@ void keyPressed(){
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
     
   }
 
@@ -91,12 +97,14 @@ void keyPressed(){
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
   }
   if (key =='d'){
     currentPiece.moveRight();
     Game.tetris.clearBackground();
     Game.tetris.display();
     Game.currentPiece.displayTiles();
+    Game.tetris.displayGhostPiece();
   }
   if (key == 's'){
     if (isSoftDrop){
@@ -113,6 +121,7 @@ void keyPressed(){
       Game.tetris.clearBackground();
       Game.tetris.display();
       Game.currentPiece.displayTiles();
+      Game.tetris.displayGhostPiece();
     }
     
   }
@@ -135,6 +144,7 @@ void hold(){
   Game.tetris.clearBackground();
   Game.tetris.display();
   Game.currentPiece.displayTiles();
+  Game.tetris.displayGhostPiece();
 }
 
 void keyReleased() {
