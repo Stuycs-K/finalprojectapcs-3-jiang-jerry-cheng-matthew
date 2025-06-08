@@ -108,7 +108,7 @@ public class Piece {
     }
     currentX =tiles[0].getY();
     currentY = tiles[0].getX();
-    displayTiles();
+    //displayTiles();
     fillRotations();
   }
   public void displayTiles(){
