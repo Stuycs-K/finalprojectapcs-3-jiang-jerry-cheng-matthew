@@ -92,3 +92,37 @@ Fixed displayHeldPiece to display the held piece on the side of the board proper
 Made variables in Piece that corresponds to a certain piece (ex: T, L, I, O, J) static
 
 Removed redundant code in draw(), since tick already calls clearBackground, display, etc
+
+### 2025-06-06 - score implementation + display (20 minutes)
+Added score instance variable in Game
+
+Added displayScore method which displays a white rectangle with the current score
+
+Changed clearLines to add score when a certain number of lines are cleared, 40 for single line, 100 for 2 lines, 300 for 3 lines, 1200 for 4 lines
+
+### 2025-06-07 - score implementation + display (1 hour 45 minutes)
+Instantiated score to be 0 at thes start of game
+
+Changed clearLines, i-- added when removing from arrayList, this makes score work properly
+
+Added ArrayList bag which stores one of every piece
+
+Added nextPiece, when a piece snaps onto the board, currentPiece swaps with nextPiece and a new nextPiece is taken out of the bag
+
+Added next() method in Board, swaps currentPiece and nextPiece then takes a random piece from bag, and makes it the new nextPiece. This method also reinstantiates bag with all 7 pieces when there are no more pieces in bag
+
+Added displayNextPiece, similar to displayHeldPiece but displays the nextPiece
+
+Changed displayHeldPiece to display it in the bottom right corner
+
+Added ghostPiece instance variable in Game
+
+Added ghostHardDrop() method in Piece which hardDrops but doesn't call tick
+
+Added copyPiece() method in Piece which returns a new Piece with all of the piece's tiles. The copied piece has a lighter color, taken from https://mdigi.tools/lighten-color 
+
+Changed Piece constructor to not call displayTiles()
+
+Added displayGhostPiece which copies currentPiece into ghostPiece, then ghostHardDrops the ghostPiece, and displays the ghostPiece's tiles
+
+Made it so that displayGhostPiece is called everytime displayCurrentPiece is called, so it matches the updates
