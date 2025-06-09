@@ -48,3 +48,6 @@ including maxH, findMaxHeight, and editing fillRotations. then that was tested a
 The collision error was fixed in the end by checking for collisions in filLRotations, then if there was a collision, 
 in the rotate method(), the loop that changed the tiles was stopped. after that fix, the code was tested and worked.
 I finally changed the initial y-val position of the pieces so the pieces started near the top.
+
+
+I believe this document accurately reflects the contributions of my teamate. - Jerry Jiang
