@@ -16,6 +16,7 @@ public class Piece {
   private int xCenter = 5;
   private int yCenter =3 ;
   private boolean start = false;
+  private boolean coll = false;
   public Piece() {
     this((int)(Math.random()*7));
   }
@@ -108,7 +109,6 @@ public class Piece {
     currentX =tiles[0].getY();
     currentY = tiles[0].getX();
 
-    displayTiles();
     fillRotations(0,false);
 
     //displayTiles();
@@ -131,7 +131,10 @@ public class Piece {
     fillRotations(hold,start);
     
     for(int i =0; i < tiles.length; i++){
-      if(valPiece == I){
+      if(coll){
+        break;
+      }
+      else if(valPiece == I){
         tiles[i] = rotationsI[hold][i];
       }
       else{
@@ -165,15 +168,15 @@ public class Piece {
       if(currentX + 4 > 10 ){
         currentX = 6;
       }
-
+     
       for(int j = 0; j < 4;j++){
         if(valPiece == I){
           if(star && Game.tetris.isOccupied(rotationsI[holdH][j].getX(),rotationsI[holdH][j].getY())){
-            currentY = Game.tetris.findMaxHeights(currentX,currentY,true);
+            coll = true;
           }
         }
         else if(star && Game.tetris.isOccupied(rotations[valPiece][holdH][j].getX(),rotations[valPiece][holdH][j].getY())){
-          currentY = Game.tetris.findMaxHeights(currentX,currentY,true);
+            coll = true;
         }
         
       }
