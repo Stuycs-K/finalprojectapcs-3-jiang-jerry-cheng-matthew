@@ -14,3 +14,8 @@ Spent time changing the coordinates of each pieces as some pieces had the wrong 
 Also changed my coordinate scaling by adjusting based off of tile display method
 
 ### 2025
+
+
+
+
+I believe this document accurately reflects the contributions of my teamate. - Jerry Jiang
