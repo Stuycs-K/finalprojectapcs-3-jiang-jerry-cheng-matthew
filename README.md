@@ -5,5 +5,38 @@ This project is a version of the popular game Tetris. It is a fully functional p
 
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
+In order to move, you have to use the keys ‘a’ and ‘d’ to move left and right respectively. 
+
+
+To rotate, use the keys ‘j’ and ‘k’ to rotate counterclockwise and clockwise respectively. 
+
+
+
+In order to hold, use the ‘h’ key which stores the current piece for later use.
+
+
+To soft drop, use the ‘s’ key, and this will increase the gravity of the current piece by 3x while the key is held. 
+
+
+To hard drop, use the spacebar key, and this drops the current piece to wherever it is hovering over (you can see where it’s hovering with the implementation of the ghost piece). 
+
+
+
+Note that the keys only work in the lowercase form, basically it is case sensitive, so if you accidentally turn on caps lock, none of the controls will work.
+
+
+Clearing a single gives you 40 points
+
+
+Clearing a double gives you 100 points
+
+
+Clearing a triple gives you 300 points
+
+
+Clearing a tetris gives you 1340 points
+
+
+
+A cheat code that we added was that if you clicked with the left side of your mouse, it would change the current piece to another random piece.
   
