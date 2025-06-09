@@ -126,3 +126,7 @@ Changed Piece constructor to not call displayTiles()
 Added displayGhostPiece which copies currentPiece into ghostPiece, then ghostHardDrops the ghostPiece, and displays the ghostPiece's tiles
 
 Made it so that displayGhostPiece is called everytime displayCurrentPiece is called, so it matches the updates
+
+
+
+I believe this document accurately reflects the contributions of my teammate - Matthew Cheng
