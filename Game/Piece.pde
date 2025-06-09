@@ -14,7 +14,7 @@ public class Piece {
   private int currentY;
   private int current;
   private int xCenter = 5;
-  private int yCenter =3 ;
+  private int yCenter =0 ;
   private boolean start = false;
   private boolean coll = false;
   public Piece() {
